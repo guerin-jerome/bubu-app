@@ -1,12 +1,15 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {AppContextProvider} from './context/AppContext';
 
 function App() {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView />
-    </SafeAreaView>
+    <AppContextProvider>
+      <SafeAreaView>
+        <StatusBar />
+        <ScrollView />
+      </SafeAreaView>
+    </AppContextProvider>
   );
 }
 
