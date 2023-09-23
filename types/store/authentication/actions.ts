@@ -15,4 +15,10 @@ export type TAuthenticationSucceedAction = {
   payload: TAuthenticationSucceedPayload;
 };
 
-export type TAuthenticationSucceedActions = TAuthenticationSucceedAction;
+export type TLogoutAction = {
+  type: 'authentication.logout.type';
+};
+
+export type TAuthenticationActions =
+  | TAuthenticationSucceedAction
+  | TLogoutAction;

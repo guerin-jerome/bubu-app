@@ -1,3 +1,3 @@
-import {TAuthenticationSucceedActions} from './store/authentication/actions';
+import {TAuthenticationActions} from './store/authentication/actions';
 
-export type TAction = TAuthenticationSucceedActions;
+export type TAction = TAuthenticationActions;
