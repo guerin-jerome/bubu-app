@@ -3,6 +3,7 @@ import {Button, Text} from 'react-native';
 import {AppContext} from '../../context/AppContext';
 import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
+import {HistoryOfExpense} from '../historyOfExpense/HistoryOfExpense';
 
 export const Home = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -18,6 +19,7 @@ export const Home = () => {
       <Text>Hello {name}</Text>
       <Button title="Déconnexion" onPress={handleClickDeconnexion} />
       <Accounts />
+      <HistoryOfExpense />
     </>
   );
 };
