@@ -28,6 +28,10 @@ export const accountReducer = (
       return {
         ...state,
         accounts: state.accounts.filter(account => account.id !== payload),
+        budgets: state.budgets.filter(budget => budget.accountid !== payload),
+        expenses: state.expenses.filter(
+          expense => expense.accountid !== payload,
+        ),
         activeView: 'home',
       };
     default:
