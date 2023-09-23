@@ -14,4 +14,12 @@ export type TAddAccountAction = {
   payload: TAccount;
 };
 
-export type TAccountActions = TSelectAccountAction | TAddAccountAction;
+export type TRemoveAccountAction = {
+  type: 'account.remove.type';
+  payload: number;
+};
+
+export type TAccountActions =
+  | TSelectAccountAction
+  | TAddAccountAction
+  | TRemoveAccountAction;
