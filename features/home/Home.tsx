@@ -1,19 +1,23 @@
 import React, {useContext} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, Text} from 'react-native';
 import {AppContext} from '../../context/AppContext';
 import {logout} from '../../store/authentication/actions';
+import {Accounts} from '../accounts/Accounts';
 
 export const Home = () => {
-  const {dispatch} = useContext(AppContext);
+  const {appState, dispatch} = useContext(AppContext);
+  const {user} = appState || {};
+  const {name} = user ?? {};
 
   const handleClickDeconnexion = () => {
     dispatch(logout());
   };
 
   return (
-    <View>
-      <Text>Bienvenue dans Bubu</Text>
+    <>
+      <Text>Hello {name}</Text>
       <Button title="Déconnexion" onPress={handleClickDeconnexion} />
-    </View>
+      <Accounts />
+    </>
   );
 };

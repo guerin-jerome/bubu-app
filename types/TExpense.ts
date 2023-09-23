@@ -1,7 +1,7 @@
 export type TExpense = {
   id: number;
-  accountId: number;
-  budgetId: number;
+  accountid: number;
+  budgetid: number;
   details: string;
   date: string;
   value: number;

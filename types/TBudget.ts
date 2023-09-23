@@ -1,6 +1,6 @@
 export type TBudget = {
   id: number;
-  accountId: number;
+  accountid: number;
   name: string;
   type: 'saved' | 'variable' | 'fixed';
   base: number;
