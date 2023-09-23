@@ -1,11 +1,11 @@
 import {initialAppState} from '../../context/AppContext';
-import {TAction} from '../../types/TAction';
 import {TAppState} from '../../types/TAppState';
+import {TAuthenticationActions} from '../../types/store/authentication/actions';
 import {AUTHENTICATION_SUCCEED_TYPE, LOGOUT_TYPE} from './constants';
 
 export const authenticationReducer = (
   state: TAppState,
-  action: TAction,
+  action: TAuthenticationActions,
 ): TAppState => {
   const {type} = action;
 
@@ -15,6 +15,7 @@ export const authenticationReducer = (
         ...state,
         ...action.payload,
         isLogged: true,
+        activeView: 'home',
       };
     case LOGOUT_TYPE:
       return initialAppState;

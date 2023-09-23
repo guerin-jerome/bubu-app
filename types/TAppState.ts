@@ -6,6 +6,7 @@ import {TUser} from './TUser';
 export type TAppState = {
   isLogged: boolean;
   user: TUser | null;
+  activeView: string | null;
   accounts: TAccount[];
   budgets: TBudget[];
   expenses: TExpense[];

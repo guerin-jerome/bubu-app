@@ -11,6 +11,7 @@ import {appReducer} from '../store/appReducer';
 export const initialAppState: TAppState = {
   isLogged: false,
   user: null,
+  activeView: null,
   accounts: [],
   budgets: [],
   expenses: [],
