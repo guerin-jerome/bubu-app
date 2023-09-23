@@ -1,4 +1,3 @@
-export type TAction = {
-  type: string;
-  payload: object;
-};
+import {TAuthenticationSucceedActions} from './store/authentication/actions';
+
+export type TAction = TAuthenticationSucceedActions;

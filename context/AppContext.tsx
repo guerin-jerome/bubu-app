@@ -8,17 +8,21 @@ import {TAppState} from '../types/TAppState';
 import {TAppContext} from '../types/TAppContext';
 import {appReducer} from '../store/appReducer';
 
-const initialState: TAppState = {
+export const initialAppState: TAppState = {
   isLogged: false,
+  user: null,
+  accounts: [],
+  budgets: [],
+  expenses: [],
 };
 
-const AppContext: Context<TAppContext> = createContext<TAppContext>({
-  appState: initialState,
+export const AppContext: Context<TAppContext> = createContext<TAppContext>({
+  appState: initialAppState,
   dispatch: () => null,
 });
 
 export const AppContextProvider = ({children}: PropsWithChildren) => {
-  const [appState, dispatch] = useReducer(appReducer, initialState);
+  const [appState, dispatch] = useReducer(appReducer, initialAppState);
 
   return (
     <AppContext.Provider value={{appState, dispatch}}>
