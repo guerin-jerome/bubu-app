@@ -8,9 +8,13 @@ export const HistoryOfExpense = () => {
   const {appState} = useContext(AppContext);
   const {expenses} = appState || {};
 
-  const expensesSortedByMostRecentDate = [...expenses];
+  const expensesToDisplay = [...expenses];
 
-  expensesSortedByMostRecentDate.sort(
+  // Limit to 10 occurences
+  expensesToDisplay.splice(9, expenses.length - 9);
+
+  // Sort by most recent date
+  expensesToDisplay.sort(
     (first, second) =>
       createDate(second.date).getTime() - createDate(first.date).getTime(),
   );
@@ -19,9 +23,10 @@ export const HistoryOfExpense = () => {
     <>
       <Text>Historique de vos dépenses :</Text>
       <ScrollView>
-        {expensesSortedByMostRecentDate.map(expense => (
+        {expensesToDisplay.map(expense => (
           <Expense {...expense} key={expense.id} />
         ))}
+        <Text>...</Text>
       </ScrollView>
     </>
   );
