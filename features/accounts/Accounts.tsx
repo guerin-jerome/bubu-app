@@ -9,6 +9,8 @@ export const Accounts = () => {
   const {accounts} = appState || {};
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const hasAccounts = accounts.length > 0;
+
   const handleOpenModal = () => {
     setIsModalVisible(true);
   };
@@ -21,11 +23,15 @@ export const Accounts = () => {
     <>
       <Text>Vos comptes :</Text>
       <Button title="Ajouter un compte" onPress={handleOpenModal} />
-      <ScrollView horizontal>
-        {accounts.map(account => (
-          <Account {...account} key={account.id} />
-        ))}
-      </ScrollView>
+      {hasAccounts ? (
+        <ScrollView horizontal>
+          {accounts.map(account => (
+            <Account {...account} key={account.id} />
+          ))}
+        </ScrollView>
+      ) : (
+        <Text>Vous n'avez pas encore de compte, veuillez en créer un.</Text>
+      )}
       <AddAccountModal
         isVisible={isModalVisible}
         handleClose={handleCloseModal}
