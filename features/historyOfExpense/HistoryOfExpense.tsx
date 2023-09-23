@@ -1,8 +1,19 @@
 import React, {useContext} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {Expense} from './expense/Expense';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {createDate} from '../../utils/date';
+import {Text} from 'native-base';
+
+const style = StyleSheet.create({
+  card: {
+    padding: 15,
+    maxHeight: 350,
+    marginRight: 10,
+    borderWidth: 2,
+    borderRadius: 5,
+  },
+});
 
 export const HistoryOfExpense = () => {
   const {appState} = useContext(AppContext);
@@ -21,8 +32,8 @@ export const HistoryOfExpense = () => {
 
   return (
     <>
-      <Text>Historique de vos dépenses :</Text>
-      <ScrollView>
+      <Text marginBottom="15px">Historique de vos dépenses :</Text>
+      <ScrollView style={style.card}>
         {expensesToDisplay.map(expense => (
           <Expense {...expense} key={expense.id} />
         ))}

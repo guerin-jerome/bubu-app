@@ -1,27 +1,52 @@
 import React, {useContext, useState} from 'react';
-import {Button, Text, TextInput} from 'react-native';
 import {AuthenticationService} from '../../../database/services/authentication/authentication';
 import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
+import {Box, Button, FormControl, Heading, Image, Input} from 'native-base';
+import {PRIMARY_COLOR} from '../../../constants';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = () => {
-    AuthenticationService.login(email).then(data =>
-      dispatch(authenticationSucceed(data as TAuthenticationSucceedPayload)),
-    );
+    setIsLoading(true);
+    AuthenticationService.login(email).then(data => {
+      setIsLoading(false);
+      dispatch(authenticationSucceed(data as TAuthenticationSucceedPayload));
+    });
     // TODO: gestion erreur
   };
 
   return (
-    <>
-      <Text>Bienvenue dans Bubu</Text>
-      <Text>Email :</Text>
-      <TextInput onChange={event => setEmail(event.nativeEvent.text)} />
-      <Button title="Connexion" onPress={handleSubmit} />
-    </>
+    <Box alignItems="center">
+      <Image
+        source={{
+          uri: 'https://i.postimg.cc/j2DsXt6B/Design-sans-titre.png',
+        }}
+        size="xl"
+        alt="logo de l'application"
+      />
+      <Heading size="md" marginBottom={10}>
+        Bienvenue dans Bubu
+      </Heading>
+      <FormControl maxW="280px">
+        <FormControl.Label>Email :</FormControl.Label>
+        <Input
+          onChangeText={text => setEmail(text)}
+          marginBottom={2}
+          autoComplete="email"
+        />
+        <Button
+          backgroundColor={PRIMARY_COLOR}
+          onPress={handleSubmit}
+          isLoading={isLoading}
+          disabled={isLoading}>
+          Connexion
+        </Button>
+      </FormControl>
+    </Box>
   );
 };

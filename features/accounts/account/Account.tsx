@@ -1,8 +1,22 @@
 import React, {useContext} from 'react';
 import {TAccount} from '../../../types/TAccount';
-import {Pressable, Text} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import {AppContext} from '../../../context/AppContext';
 import {selectAccount} from '../../../store/account/actions';
+import {Text} from 'native-base';
+
+const style = StyleSheet.create({
+  card: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    width: 200,
+    marginRight: 10,
+    borderWidth: 2,
+    borderRadius: 5,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+});
 
 export const Account = ({id, name}: TAccount) => {
   const {appState, dispatch} = useContext(AppContext);
@@ -18,9 +32,11 @@ export const Account = ({id, name}: TAccount) => {
   };
 
   return (
-    <Pressable onPress={handleClickAccount}>
+    <Pressable onPress={handleClickAccount} style={style.card}>
       <Text>{name}</Text>
-      <Text>{totalRemainingOfAccount} €</Text>
+      <Text bold fontSize="xl">
+        {totalRemainingOfAccount} €
+      </Text>
     </Pressable>
   );
 };
