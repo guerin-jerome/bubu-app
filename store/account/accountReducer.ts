@@ -1,7 +1,7 @@
 import {initialAppState} from '../../context/AppContext';
 import {TAppState} from '../../types/TAppState';
 import {TAccountActions} from '../../types/store/account/actions';
-import {SELECT_ACCOUNT_TYPE} from './constants';
+import {ADD_ACCOUNT_TYPE, SELECT_ACCOUNT_TYPE} from './constants';
 
 export const accountReducer = (
   state: TAppState,
@@ -14,6 +14,11 @@ export const accountReducer = (
       return {
         ...state,
         activeView: `account-${payload.accountid}`,
+      };
+    case ADD_ACCOUNT_TYPE:
+      return {
+        ...state,
+        accounts: [...state.accounts, payload],
       };
     default:
       console.error(`Unknown action in accountReducer, with type: ${type}`);

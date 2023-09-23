@@ -1,3 +1,5 @@
+import {TAccount} from '../../TAccount';
+
 export type TSelectAccountPayload = {
   accountid: number;
 };
@@ -7,4 +9,9 @@ export type TSelectAccountAction = {
   payload: TSelectAccountPayload;
 };
 
-export type TAccountActions = TSelectAccountAction;
+export type TAddAccountAction = {
+  type: 'account.add.type';
+  payload: TAccount;
+};
+
+export type TAccountActions = TSelectAccountAction | TAddAccountAction;
