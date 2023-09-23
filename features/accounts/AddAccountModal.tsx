@@ -23,11 +23,11 @@ export const AddAccountModal = ({
       userid: user?.id ?? 0,
       name: accountName,
     };
-    AccountService.create(newAccount).then(account =>
-      dispatch(addAccount(account)),
-    );
+    AccountService.create(newAccount).then(account => {
+      dispatch(addAccount(account));
+      handleClose();
+    });
     // TODO: gérer erreur
-    handleClose();
   };
 
   return (

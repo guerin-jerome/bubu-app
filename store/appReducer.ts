@@ -3,11 +3,14 @@ import {TAction} from '../types/TAction';
 import {TAppState} from '../types/TAppState';
 import {TAccountActions} from '../types/store/account/actions';
 import {TAuthenticationActions} from '../types/store/authentication/actions';
+import {TBudgetActions} from '../types/store/budget/actions';
 import {TViewsActions} from '../types/store/views/actions';
 import {accountReducer} from './account/accountReducer';
 import {ACCOUNT_ACTION_PREFIX} from './account/constants';
 import {authenticationReducer} from './authentication/authenticationReducer';
 import {AUTHENTICATION_ACTION_PREFIX} from './authentication/constants';
+import {budgetReducer} from './budget/budgetReducer';
+import {BUDGET_ACTION_PREFIX} from './budget/constants';
 import {VIEWS_ACTION_PREFIX} from './views/constants';
 import {viewsReducer} from './views/viewsReducer';
 
@@ -24,6 +27,10 @@ export const appReducer = (state: TAppState, action: TAction): TAppState => {
 
   if (type.includes(VIEWS_ACTION_PREFIX)) {
     return viewsReducer(state, action as TViewsActions);
+  }
+
+  if (type.includes(BUDGET_ACTION_PREFIX)) {
+    return budgetReducer(state, action as TBudgetActions);
   }
 
   console.error(`Unknown action in appReducer, with type: ${type}`);

@@ -1,14 +1,24 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Text} from 'react-native';
 import {AppContext} from '../../context/AppContext';
 import {Budgets} from '../budgets/Budgets';
 import {changeView} from '../../store/views/actions';
 import {AccountService} from '../../database/services/account/account';
 import {removeAccount} from '../../store/account/actions';
+import {AddBudgetModal} from '../budgets/AddBudgetModal';
 
 export const AccountView = () => {
   const {appState, dispatch} = useContext(AppContext);
   const {activeView, accounts} = appState || {};
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
 
   const accountId = parseInt(activeView?.split('-')?.[1] ?? '0', 10);
   const accountFinded = accounts.find(account => account.id === accountId);
@@ -27,11 +37,16 @@ export const AccountView = () => {
   return (
     <>
       <Button title="Retour" onPress={handleClickRetour} />
-      <Button title="Supprimer le compte" onPress={handleClickRemove} />
+      <Button title="Supprimer compte" onPress={handleClickRemove} />
       <Text>Nom de votre compte sélectionné :</Text>
       <Text>{accountFinded?.name}</Text>
+      <Button title="Ajouter budget" onPress={handleOpenModal} />
       <Text>Vos budgets :</Text>
       <Budgets accountid={accountId} />
+      <AddBudgetModal
+        isVisible={isModalVisible}
+        handleClose={handleCloseModal}
+      />
     </>
   );
 };
