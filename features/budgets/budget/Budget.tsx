@@ -22,6 +22,32 @@ const style = StyleSheet.create({
   },
 });
 
+type TBudgetBody = {
+  base?: number;
+  current: number;
+};
+
+const BudgetBody = ({base, current}: TBudgetBody) => (
+  <>
+    <Text bold fontSize="sm">
+      {current} € / {base} €
+    </Text>
+    <Progress
+      _filledTrack={{backgroundColor: PRIMARY_COLOR}}
+      value={(100 * current) / (base ?? 0)}
+    />
+  </>
+);
+
+const SavedBudgetBody = ({current}: TBudgetBody) => (
+  <>
+    <Text bold fontSize="sm">
+      {current} €
+    </Text>
+    <Progress _filledTrack={{backgroundColor: PRIMARY_COLOR}} value={100} />
+  </>
+);
+
 export const Budget = ({id, name, type, base, current}: TBudget) => {
   const {dispatch} = useContext(AppContext);
 
@@ -35,13 +61,11 @@ export const Budget = ({id, name, type, base, current}: TBudget) => {
         <Text>{name}</Text>
         <Text>{formatType(type)}</Text>
       </Box>
-      <Text bold fontSize="sm">
-        {current}€/{base}€
-      </Text>
-      <Progress
-        _filledTrack={{backgroundColor: PRIMARY_COLOR}}
-        value={(100 * current) / base}
-      />
+      {type === 'saved' ? (
+        <SavedBudgetBody base={base} current={current} />
+      ) : (
+        <BudgetBody base={base} current={current} />
+      )}
     </Pressable>
   );
 };

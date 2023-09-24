@@ -24,7 +24,10 @@ export const BudgetView = () => {
   const budgetId = activeView?.slice(activeView.indexOf('.') + 1) ?? '0';
   const budgetFinded = budgets.find(budget => budget.id === budgetId);
   const {accountid, name, type, base, current} = budgetFinded ?? {};
-
+  const budgetIndicator =
+    type === 'saved' ? `${current} €` : `${current} € / ${base}€`;
+  const percentConsumned =
+    type === 'saved' ? 100 : (100 * (current ?? 0)) / (base ?? 0);
   const handleClickRetour = () => {
     dispatch(changeView(`account.${accountid}`));
   };
@@ -69,18 +72,20 @@ export const BudgetView = () => {
       <Divider marginY={3} />
       <Text>Total restant :</Text>
       <Text bold fontSize="xl">
-        {current}€ / {base}€
+        {budgetIndicator}
       </Text>
       <Progress
         _filledTrack={{backgroundColor: PRIMARY_COLOR}}
-        value={(100 * (current ?? 0)) / (base ?? 0)}
+        value={percentConsumned}
         size="md"
         marginBottom={6}
       />
       <BudgetForm budget={budgetFinded!!} />
-      <Button marginTop={4} backgroundColor={PRIMARY_COLOR}>
+      {/**
+       * <Button marginTop={4} backgroundColor={PRIMARY_COLOR}>
         Réinitialiser
       </Button>
+       */}
     </Box>
   );
 };
