@@ -1,5 +1,5 @@
 export type TAccount = {
-  id: number;
-  userid: number;
+  id: string;
+  userid: string;
   name: string;
 };
