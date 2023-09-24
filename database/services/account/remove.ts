@@ -20,11 +20,11 @@ export const remove = async (id: number) => {
                 .eq('id', id)
                 .then(responseThree => {
                   if (responseThree.status !== 204) {
-                    throw new Error("Expenses couldn't be removed");
+                    throw new Error("Account couldn't be removed");
                   }
                 });
             } else {
-              throw new Error("Expenses couldn't be removed");
+              throw new Error("Budgets couldn't be removed");
             }
           });
       } else {

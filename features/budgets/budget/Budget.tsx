@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {TBudget} from '../../../types/TBudget';
-import {StyleSheet} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import {Box, Progress, Text} from 'native-base';
 import {PRIMARY_COLOR} from '../../../constants';
+import {AppContext} from '../../../context/AppContext';
+import {changeView} from '../../../store/views/actions';
+import {formatType} from '../../../utils/budget';
 
 const style = StyleSheet.create({
   card: {
@@ -19,23 +22,18 @@ const style = StyleSheet.create({
   },
 });
 
-export const Budget = ({name, type, base, current}: TBudget) => {
-  const formatType = () => {
-    switch (type) {
-      case 'saved':
-        return 'EPARGNE';
-      case 'variable':
-        return 'VARIABLE';
-      case 'fixed':
-        return 'FIXE';
-    }
+export const Budget = ({id, name, type, base, current}: TBudget) => {
+  const {dispatch} = useContext(AppContext);
+
+  const handleClickBudget = () => {
+    dispatch(changeView(`budget-${id}`));
   };
 
   return (
-    <Box style={style.card}>
+    <Pressable style={style.card} onPress={handleClickBudget}>
       <Box style={style.budgetHeader}>
         <Text>{name}</Text>
-        <Text>{formatType()}</Text>
+        <Text>{formatType(type)}</Text>
       </Box>
       <Text bold fontSize="sm">
         {current}€/{base}€
@@ -44,6 +42,6 @@ export const Budget = ({name, type, base, current}: TBudget) => {
         _filledTrack={{backgroundColor: PRIMARY_COLOR}}
         value={(100 * current) / base}
       />
-    </Box>
+    </Pressable>
   );
 };

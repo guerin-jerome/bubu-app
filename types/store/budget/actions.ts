@@ -5,4 +5,9 @@ export type TAddBudgetAction = {
   payload: TBudget;
 };
 
-export type TBudgetActions = TAddBudgetAction;
+export type TRemoveBudgetAction = {
+  type: 'budget.remove.type';
+  payload: TBudget;
+};
+
+export type TBudgetActions = TAddBudgetAction | TRemoveBudgetAction;
