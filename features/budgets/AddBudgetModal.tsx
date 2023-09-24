@@ -4,6 +4,8 @@ import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
 import {Box, Button, Heading, Input, Modal, Radio, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {v4 as uuid} from 'uuid';
+import {TBudget} from '../../types/TBudget';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -15,7 +17,7 @@ export const AddBudgetModal = ({
   handleClose,
 }: TAddAccountModalProps) => {
   const {appState, dispatch} = useContext(AppContext);
-  const {user, budgets, activeView} = appState || {};
+  const {user, activeView} = appState || {};
   const [name, setBudgetName] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,10 +27,10 @@ export const AddBudgetModal = ({
 
   const handleAddBudget = () => {
     setIsLoading(true);
-    const newBudget = {
-      id: Math.max(...budgets.map(budget => budget.id)) + 1,
-      accountid: parseInt(activeView?.split('-')?.[1] ?? '0', 10),
-      userid: user?.id ?? 0,
+    const newBudget: TBudget = {
+      id: uuid(),
+      accountid: activeView?.split('-')?.[1] ?? '0',
+      userid: user?.id ?? '0',
       name,
       type,
       base: parseFloat(budgetAmount),

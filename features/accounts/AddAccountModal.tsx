@@ -4,6 +4,8 @@ import {AppContext} from '../../context/AppContext';
 import {addAccount} from '../../store/account/actions';
 import {Box, Button, Heading, Input, Modal, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {TAccount} from '../../types/TAccount';
+import {v4 as uuid} from 'uuid';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -15,15 +17,15 @@ export const AddAccountModal = ({
   handleClose,
 }: TAddAccountModalProps) => {
   const {appState, dispatch} = useContext(AppContext);
-  const {user, accounts} = appState || {};
+  const {user} = appState || {};
   const [accountName, setAccountName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddAccount = () => {
     setIsLoading(true);
-    const newAccount = {
-      id: Math.max(...accounts.map(account => account.id)) + 1,
-      userid: user?.id ?? 0,
+    const newAccount: TAccount = {
+      id: uuid(),
+      userid: user?.id ?? '0',
       name: accountName,
     };
     AccountService.create(newAccount)

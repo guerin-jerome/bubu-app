@@ -23,7 +23,7 @@ export const addAccount = (payload: TAccount): TAddAccountAction => ({
   payload,
 });
 
-export const removeAccount = (payload: number): TRemoveAccountAction => ({
+export const removeAccount = (payload: string): TRemoveAccountAction => ({
   type: REMOVE_ACCOUNT_TYPE,
   payload,
 });

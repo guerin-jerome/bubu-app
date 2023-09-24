@@ -1,6 +1,6 @@
 import {databaseClient} from '../../databaseClient';
 
-export const remove = async (id: number) => {
+export const remove = async (id: string) => {
   // TODO: improve !
   return await databaseClient
     .from('expenses')

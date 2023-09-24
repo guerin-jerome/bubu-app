@@ -1,7 +1,7 @@
 import {TAccount} from '../../TAccount';
 
 export type TSelectAccountPayload = {
-  accountid: number;
+  accountid: string;
 };
 
 export type TSelectAccountAction = {
@@ -16,7 +16,7 @@ export type TAddAccountAction = {
 
 export type TRemoveAccountAction = {
   type: 'account.remove.type';
-  payload: number;
+  payload: string;
 };
 
 export type TAccountActions =

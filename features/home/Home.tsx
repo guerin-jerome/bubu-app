@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
-import {HistoryOfExpense} from '../historyOfExpense/HistoryOfExpense';
+import {HistoryOfExpense} from '../expense/HistoryOfExpense';
 import {Box, Button, Heading} from 'native-base';
 import {SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
 import {Dimensions} from 'react-native';

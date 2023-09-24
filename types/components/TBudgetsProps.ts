@@ -1,3 +1,3 @@
 export type TBudgetsProps = {
-  accountid: number;
+  accountid: string;
 };

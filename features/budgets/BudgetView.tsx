@@ -21,7 +21,7 @@ export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
   const {activeView, budgets} = appState || {};
   const [isLoading, setIsLoading] = useState(false);
-  const budgetId = parseInt(activeView?.split('-')?.[1] ?? '0', 10);
+  const budgetId = activeView?.split('-')?.[1] ?? '0';
   const budgetFinded = budgets.find(budget => budget.id === budgetId);
   const {accountid, name, type, base, current} = budgetFinded ?? {};
 

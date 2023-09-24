@@ -7,6 +7,8 @@ import {TBudget} from '../../../types/TBudget';
 import {createTodayDate} from '../../../utils/date';
 import {ExpenseService} from '../../../database/services/expense/expense';
 import {addExpense} from '../../../store/expense/actions';
+import {TExpense} from '../../../types/TExpense';
+import {v4 as uuid} from 'uuid';
 
 const style = StyleSheet.create({
   card: {
@@ -29,7 +31,7 @@ type TBudgetFormProps = {
 
 export const BudgetForm = ({budget}: TBudgetFormProps) => {
   const {appState, dispatch} = useContext(AppContext);
-  const {expenses, user} = appState || {};
+  const {user} = appState || {};
   const {id, accountid, current} = budget || {};
   const [details, setDetails] = useState('');
   const [value, setValue] = useState('');
@@ -39,14 +41,14 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
     setIsLoading(true);
     const amount =
       operator === '+' ? parseFloat(value) : parseFloat(value) * -1;
-    const newExpense = {
-      id: Math.max(...expenses.map(expense => expense.id)) + 1,
-      date: createTodayDate(),
-      details,
-      value: amount,
-      budgetid: id,
+    const newExpense: TExpense = {
+      id: uuid(),
       accountid: accountid,
-      userid: user?.id ?? 0,
+      userid: user?.id ?? '0',
+      budgetid: id,
+      details,
+      date: createTodayDate(),
+      value: amount,
     };
     const newCurrentValueOfBudget = (current ?? 0) + newExpense.value;
     ExpenseService.create(newExpense, newCurrentValueOfBudget)
