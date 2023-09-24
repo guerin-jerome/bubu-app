@@ -17,6 +17,7 @@ export const AddAccountModal = ({
   const {appState, dispatch} = useContext(AppContext);
   const {user, accounts} = appState || {};
   const [accountName, setAccountName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddAccount = () => {
     const newAccount = {
@@ -24,19 +25,22 @@ export const AddAccountModal = ({
       userid: user?.id ?? 0,
       name: accountName,
     };
-    AccountService.create(newAccount).then(account => {
-      dispatch(addAccount(account));
-      handleClose();
-    });
+    AccountService.create(newAccount)
+      .then(account => {
+        dispatch(addAccount(account));
+        setAccountName('');
+        handleClose();
+      })
+      .finally(() => setIsLoading(false));
     // TODO: gérer erreur
   };
 
   return (
     <Modal isOpen={isVisible} onClose={handleClose}>
       <Modal.Content>
-        <Modal.Body alignItems="center">
+        <Modal.Body>
           <Heading size="md" marginBottom={4}>
-            Ajout un compte
+            Ajouter un compte
           </Heading>
           <Text>Nom :</Text>
           <Input
@@ -46,14 +50,19 @@ export const AddAccountModal = ({
             focusOutlineColor={PRIMARY_COLOR}
             _focus={{backgroundColor: SUBTLE_COLOR}}
           />
-          <Box flexDirection="row">
+          <Box flexDirection="row" justifyContent="space-between">
             <Button
+              width="47%"
+              isLoading={isLoading}
+              isDisabled={isLoading}
               onPress={handleAddAccount}
-              backgroundColor={PRIMARY_COLOR}
-              marginRight={4}>
+              backgroundColor={PRIMARY_COLOR}>
               Ajouter
             </Button>
             <Button
+              width="47%"
+              isLoading={isLoading}
+              isDisabled={isLoading}
               onPress={handleClose}
               backgroundColor={SUBTLE_COLOR}
               _text={{color: SUBTLE_TEXT_COLOR}}>

@@ -2,10 +2,11 @@ import React, {useContext, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {AddIcon, Box, Button, Input, MinusIcon, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR} from '../../../constants';
-import {TExpense} from '../../../types/TExpense';
 import {AppContext} from '../../../context/AppContext';
 import {TBudget} from '../../../types/TBudget';
 import {createTodayDate} from '../../../utils/date';
+import {ExpenseService} from '../../../database/services/expense/expense';
+import {addExpense} from '../../../store/expense/actions';
 
 const style = StyleSheet.create({
   card: {
@@ -24,17 +25,18 @@ const style = StyleSheet.create({
 
 type TBudgetFormProps = {
   budget: TBudget;
-  handleSubmit: (expense: TExpense) => void;
 };
 
-export const BudgetForm = ({budget, handleSubmit}: TBudgetFormProps) => {
-  const {appState} = useContext(AppContext);
+export const BudgetForm = ({budget}: TBudgetFormProps) => {
+  const {appState, dispatch} = useContext(AppContext);
   const {expenses, user} = appState || {};
-  const {id, accountid} = budget || {};
+  const {id, accountid, current} = budget || {};
   const [details, setDetails] = useState('');
   const [value, setValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmitForm = (operator: '+' | '-') => {
+    setIsLoading(true);
     const amount =
       operator === '+' ? parseFloat(value) : parseFloat(value) * -1;
     const newExpense = {
@@ -46,10 +48,14 @@ export const BudgetForm = ({budget, handleSubmit}: TBudgetFormProps) => {
       accountid: accountid,
       userid: user?.id ?? 0,
     };
-    // TODO: traitement des données
-    handleSubmit(newExpense);
-    setDetails('');
-    setValue('');
+    const newCurrentValueOfBudget = (current ?? 0) + newExpense.value;
+    ExpenseService.create(newExpense, newCurrentValueOfBudget)
+      .then(expense => {
+        dispatch(addExpense({expense, newCurrentValueOfBudget}));
+        setDetails('');
+        setValue('');
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -59,6 +65,7 @@ export const BudgetForm = ({budget, handleSubmit}: TBudgetFormProps) => {
       </Text>
       <Text>Détails :</Text>
       <Input
+        isDisabled={isLoading}
         value={details}
         marginBottom={2}
         onChangeText={setDetails}
@@ -67,6 +74,7 @@ export const BudgetForm = ({budget, handleSubmit}: TBudgetFormProps) => {
       />
       <Text>Montant :</Text>
       <Input
+        isDisabled={isLoading}
         value={value}
         width="100%"
         marginBottom={2}
@@ -79,14 +87,18 @@ export const BudgetForm = ({budget, handleSubmit}: TBudgetFormProps) => {
           leftIcon={<AddIcon color="white" />}
           onPress={() => handleSubmitForm('+')}
           width="47%"
-          backgroundColor="#00b894">
+          backgroundColor="#00b894"
+          isLoading={isLoading}
+          isDisabled={isLoading}>
           Ajouter
         </Button>
         <Button
           leftIcon={<MinusIcon color="white" />}
           onPress={() => handleSubmitForm('-')}
           width="47%"
-          backgroundColor="#d63031">
+          backgroundColor="#d63031"
+          isLoading={isLoading}
+          isDisabled={isLoading}>
           Retirer
         </Button>
       </Box>

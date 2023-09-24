@@ -21,6 +21,7 @@ export const AccountView = () => {
   const {appState, dispatch} = useContext(AppContext);
   const {activeView, accounts} = appState || {};
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalVisible(true);
@@ -38,9 +39,10 @@ export const AccountView = () => {
   };
 
   const handleClickRemove = () => {
-    AccountService.remove(accountId).then(() =>
-      dispatch(removeAccount(accountId)),
-    );
+    setIsLoading(true);
+    AccountService.remove(accountId)
+      .then(() => dispatch(removeAccount(accountId)))
+      .finally(() => setIsLoading(false));
     // TODO: traiter l'erreur
   };
 
@@ -63,7 +65,9 @@ export const AccountView = () => {
           onPress={handleClickRemove}
           backgroundColor={SUBTLE_COLOR}
           _text={{color: SUBTLE_TEXT_COLOR}}
-          variant="subtle">
+          variant="subtle"
+          isLoading={isLoading}
+          isDisabled={isLoading}>
           Supprimer compte
         </Button>
       </Box>

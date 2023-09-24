@@ -18,11 +18,13 @@ export const AddBudgetModal = ({
   const {user, budgets, activeView} = appState || {};
   const [name, setBudgetName] = useState('');
   const [budgetAmount, setBudgetAmount] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [type, setBudgetType] = useState<'saved' | 'variable' | 'fixed'>(
     'variable',
   );
 
   const handleAddBudget = () => {
+    setIsLoading(true);
     const newBudget = {
       id: Math.max(...budgets.map(budget => budget.id)) + 1,
       accountid: parseInt(activeView?.split('-')?.[1] ?? '0', 10),
@@ -32,10 +34,12 @@ export const AddBudgetModal = ({
       base: parseFloat(budgetAmount),
       current: parseFloat(budgetAmount),
     };
-    BudgetService.create(newBudget).then(budget => {
-      dispatch(addBudget(budget));
-      handleClose();
-    });
+    BudgetService.create(newBudget)
+      .then(budget => {
+        dispatch(addBudget(budget));
+        handleClose();
+      })
+      .finally(() => setIsLoading(false));
     // TODO: gérer erreur
   };
 
@@ -44,7 +48,7 @@ export const AddBudgetModal = ({
       <Modal.Content>
         <Modal.Body>
           <Heading size="md" marginBottom={4}>
-            Ajout un budget
+            Ajouter un budget
           </Heading>
           <Text>Nom :</Text>
           <Input
@@ -79,14 +83,19 @@ export const AddBudgetModal = ({
               Épargne
             </Radio>
           </Radio.Group>
-          <Box flexDirection="row" marginTop={6}>
+          <Box flexDirection="row" justifyContent="space-between" marginTop={6}>
             <Button
+              width="47%"
+              isLoading={isLoading}
+              isDisabled={isLoading}
               onPress={handleAddBudget}
-              backgroundColor={PRIMARY_COLOR}
-              marginRight={4}>
+              backgroundColor={PRIMARY_COLOR}>
               Ajouter
             </Button>
             <Button
+              width="47%"
+              isLoading={isLoading}
+              isDisabled={isLoading}
               onPress={handleClose}
               backgroundColor={SUBTLE_COLOR}
               _text={{color: SUBTLE_TEXT_COLOR}}>

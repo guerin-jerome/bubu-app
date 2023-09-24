@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {changeView} from '../../store/views/actions';
 import {
@@ -16,14 +16,11 @@ import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
 import {BudgetForm} from './budgetForm/BudgetForm';
-import {TExpense} from '../../types/TExpense';
-import {addExpense} from '../../store/expense/actions';
-import {ExpenseService} from '../../database/services/expense/expense';
 
 export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
   const {activeView, budgets} = appState || {};
-
+  const [isLoading, setIsLoading] = useState(false);
   const budgetId = parseInt(activeView?.split('-')?.[1] ?? '0', 10);
   const budgetFinded = budgets.find(budget => budget.id === budgetId);
   const {accountid, name, type, base, current} = budgetFinded ?? {};
@@ -33,18 +30,11 @@ export const BudgetView = () => {
   };
 
   const handleClickRemove = () => {
-    BudgetService.remove(budgetFinded!!).then(() =>
-      dispatch(removeBudget(budgetFinded!!)),
-    );
+    setIsLoading(true);
+    BudgetService.remove(budgetFinded!!)
+      .then(() => dispatch(removeBudget(budgetFinded!!)))
+      .finally(() => setIsLoading(false));
     // TODO: traiter l'erreur
-  };
-
-  const handleAddExpense = (expense: TExpense) => {
-    const newCurrentValueOfBudget = (current ?? 0) + expense.value;
-    ExpenseService.create(expense, newCurrentValueOfBudget).then(expense => {
-      dispatch(addExpense({expense, newCurrentValueOfBudget}));
-    });
-    // TODO: Traiter erreur
   };
 
   return (
@@ -62,6 +52,8 @@ export const BudgetView = () => {
           icon={<ArrowBackIcon color="white" />}
         />
         <Button
+          isLoading={isLoading}
+          isDisabled={isLoading}
           size="sm"
           onPress={handleClickRemove}
           backgroundColor={SUBTLE_COLOR}
@@ -85,7 +77,7 @@ export const BudgetView = () => {
         size="md"
         marginBottom={6}
       />
-      <BudgetForm budget={budgetFinded!!} handleSubmit={handleAddExpense} />
+      <BudgetForm budget={budgetFinded!!} />
       <Button marginTop={4} backgroundColor={PRIMARY_COLOR}>
         Réinitialiser
       </Button>
