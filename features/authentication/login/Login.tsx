@@ -4,7 +4,7 @@ import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
 import {Box, Button, FormControl, Heading, Image, Input} from 'native-base';
-import {PRIMARY_COLOR} from '../../../constants';
+import {PRIMARY_COLOR, SUBTLE_COLOR} from '../../../constants';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);
@@ -38,6 +38,8 @@ export const Login = () => {
           onChangeText={text => setEmail(text)}
           marginBottom={2}
           autoComplete="email"
+          focusOutlineColor={PRIMARY_COLOR}
+          _focus={{backgroundColor: SUBTLE_COLOR}}
         />
         <Button
           backgroundColor={PRIMARY_COLOR}

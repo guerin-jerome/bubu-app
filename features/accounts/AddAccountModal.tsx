@@ -43,6 +43,8 @@ export const AddAccountModal = ({
             width="100%"
             marginBottom={6}
             onChangeText={text => setAccountName(text)}
+            focusOutlineColor={PRIMARY_COLOR}
+            _focus={{backgroundColor: SUBTLE_COLOR}}
           />
           <Box flexDirection="row">
             <Button

@@ -14,7 +14,6 @@ export const AddBudgetModal = ({
   isVisible,
   handleClose,
 }: TAddAccountModalProps) => {
-  // TODO: revoir ici pour mettre un RADIO button pour le type
   const {appState, dispatch} = useContext(AppContext);
   const {user, budgets, activeView} = appState || {};
   const [name, setBudgetName] = useState('');
@@ -52,12 +51,16 @@ export const AddBudgetModal = ({
             width="100%"
             marginBottom={3}
             onChangeText={text => setBudgetName(text)}
+            focusOutlineColor={PRIMARY_COLOR}
+            _focus={{backgroundColor: SUBTLE_COLOR}}
           />
           <Text>Montant :</Text>
           <Input
             width="100%"
-            marginBottom={3} // 6 pour le dernier
+            marginBottom={3}
             onChangeText={text => setBudgetAmount(text)}
+            focusOutlineColor={PRIMARY_COLOR}
+            _focus={{backgroundColor: SUBTLE_COLOR}}
           />
           <Text>Type :</Text>
           <Radio.Group
@@ -66,9 +69,15 @@ export const AddBudgetModal = ({
             onChange={event =>
               setBudgetType(event as 'variable' | 'fixed' | 'saved')
             }>
-            <Radio value="variable">Variable</Radio>
-            <Radio value="fixed">Fixe</Radio>
-            <Radio value="saved">Épargne</Radio>
+            <Radio value="variable" colorScheme="secondary">
+              Variable
+            </Radio>
+            <Radio value="fixed" colorScheme="secondary">
+              Fixe
+            </Radio>
+            <Radio value="saved" colorScheme="secondary">
+              Épargne
+            </Radio>
           </Radio.Group>
           <Box flexDirection="row" marginTop={6}>
             <Button
