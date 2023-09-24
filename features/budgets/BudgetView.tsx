@@ -15,6 +15,10 @@ import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
 import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
+import {BudgetForm} from './budgetForm/BudgetForm';
+import {TExpense} from '../../types/TExpense';
+import {addExpense} from '../../store/expense/actions';
+import {ExpenseService} from '../../database/services/expense/expense';
 
 export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -33,6 +37,14 @@ export const BudgetView = () => {
       dispatch(removeBudget(budgetFinded!!)),
     );
     // TODO: traiter l'erreur
+  };
+
+  const handleAddExpense = (expense: TExpense) => {
+    const newCurrentValueOfBudget = (current ?? 0) + expense.value;
+    ExpenseService.create(expense, newCurrentValueOfBudget).then(expense => {
+      dispatch(addExpense({expense, newCurrentValueOfBudget}));
+    });
+    // TODO: Traiter erreur
   };
 
   return (
@@ -71,7 +83,12 @@ export const BudgetView = () => {
         _filledTrack={{backgroundColor: PRIMARY_COLOR}}
         value={(100 * (current ?? 0)) / (base ?? 0)}
         size="md"
+        marginBottom={6}
       />
+      <BudgetForm budget={budgetFinded!!} handleSubmit={handleAddExpense} />
+      <Button marginTop={4} backgroundColor={PRIMARY_COLOR}>
+        Réinitialiser
+      </Button>
     </Box>
   );
 };
