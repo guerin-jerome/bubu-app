@@ -31,14 +31,19 @@ export const HistoryOfExpense = () => {
       createDate(second.date).getTime() - createDate(first.date).getTime(),
   );
 
+  const hasExpense = expenses.length > 0;
+
   return (
     <>
       <Text marginBottom="15px">Historique de vos dépenses :</Text>
       <ScrollView style={style.card}>
-        {expensesToDisplay.map(expense => (
-          <Expense {...expense} key={expense.id} />
-        ))}
-        <Text>...</Text>
+        {hasExpense ? (
+          expensesToDisplay.map(expense => (
+            <Expense {...expense} key={expense.id} />
+          ))
+        ) : (
+          <Text>Vous n'avez pas encore de dépense.</Text>
+        )}
       </ScrollView>
     </>
   );

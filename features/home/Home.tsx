@@ -26,7 +26,7 @@ export const Home = () => {
         flexDir="row"
         justifyContent="space-between"
         alignItems="center">
-        <Heading size="md">Hello {name}</Heading>
+        <Heading size="md">Bonjour {name}</Heading>
         <Button
           size="sm"
           onPress={handleClickDeconnexion}

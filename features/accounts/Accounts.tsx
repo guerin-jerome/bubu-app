@@ -51,7 +51,7 @@ export const Accounts = () => {
           ))}
         </ScrollView>
       ) : (
-        <Text>Vous n'avez pas encore de compte, veuillez en créer un.</Text>
+        <Text paddingBottom={15}>Vous n'avez pas encore de compte.</Text>
       )}
       <AddAccountModal
         isVisible={isModalVisible}

@@ -19,7 +19,7 @@ export const Budgets = ({accountid}: TBudgetsProps) => {
       {hasBudgets ? (
         filteredBudgets.map(budget => <Budget {...budget} key={budget.id} />)
       ) : (
-        <Text>Vous n'avez pas encore de budgets, veuillez en créer un.</Text>
+        <Text>Vous n'avez pas encore de budgets.</Text>
       )}
     </>
   );

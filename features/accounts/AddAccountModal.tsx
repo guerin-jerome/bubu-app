@@ -20,6 +20,7 @@ export const AddAccountModal = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddAccount = () => {
+    setIsLoading(true);
     const newAccount = {
       id: Math.max(...accounts.map(account => account.id)) + 1,
       userid: user?.id ?? 0,
