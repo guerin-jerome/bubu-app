@@ -5,7 +5,7 @@ import {addAccount} from '../../store/account/actions';
 import {Box, Button, Heading, Input, Modal, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
 import {TAccount} from '../../types/TAccount';
-import {v4 as uuid} from 'uuid';
+import uuid from 'react-native-uuid';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -24,7 +24,7 @@ export const AddAccountModal = ({
   const handleAddAccount = () => {
     setIsLoading(true);
     const newAccount: TAccount = {
-      id: uuid(),
+      id: uuid.v4().toString(),
       userid: user?.id ?? '0',
       name: accountName,
     };
@@ -34,6 +34,7 @@ export const AddAccountModal = ({
         setAccountName('');
         handleClose();
       })
+      .catch(error => console.error(error))
       .finally(() => setIsLoading(false));
     // TODO: gérer erreur
   };

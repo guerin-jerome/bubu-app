@@ -8,7 +8,7 @@ import {createTodayDate} from '../../../utils/date';
 import {ExpenseService} from '../../../database/services/expense/expense';
 import {addExpense} from '../../../store/expense/actions';
 import {TExpense} from '../../../types/TExpense';
-import {v4 as uuid} from 'uuid';
+import uuid from 'react-native-uuid';
 
 const style = StyleSheet.create({
   card: {
@@ -42,7 +42,7 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
     const amount =
       operator === '+' ? parseFloat(value) : parseFloat(value) * -1;
     const newExpense: TExpense = {
-      id: uuid(),
+      id: uuid.v4().toString(),
       accountid: accountid,
       userid: user?.id ?? '0',
       budgetid: id,

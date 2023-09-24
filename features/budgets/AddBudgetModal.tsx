@@ -4,7 +4,7 @@ import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
 import {Box, Button, Heading, Input, Modal, Radio, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
-import {v4 as uuid} from 'uuid';
+import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
 
 type TAddAccountModalProps = {
@@ -28,7 +28,7 @@ export const AddBudgetModal = ({
   const handleAddBudget = () => {
     setIsLoading(true);
     const newBudget: TBudget = {
-      id: uuid(),
+      id: uuid.v4().toString(),
       accountid: activeView?.split('-')?.[1] ?? '0',
       userid: user?.id ?? '0',
       name,

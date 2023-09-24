@@ -3,6 +3,7 @@ import {AppContext} from '../../context/AppContext';
 import {Budget} from './budget/Budget';
 import {TBudgetsProps} from '../../types/components/TBudgetsProps';
 import {Text} from 'react-native';
+import {PLACEHOLDER_COLOR} from '../../constants';
 
 export const Budgets = ({accountid}: TBudgetsProps) => {
   const {appState} = useContext(AppContext);
@@ -19,7 +20,9 @@ export const Budgets = ({accountid}: TBudgetsProps) => {
       {hasBudgets ? (
         filteredBudgets.map(budget => <Budget {...budget} key={budget.id} />)
       ) : (
-        <Text>Vous n'avez pas encore de budgets.</Text>
+        <Text color={PLACEHOLDER_COLOR}>
+          Vous n'avez pas encore de budgets.
+        </Text>
       )}
     </>
   );

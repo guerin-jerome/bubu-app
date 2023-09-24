@@ -4,6 +4,7 @@ import {Expense} from './expense/Expense';
 import {ScrollView, StyleSheet} from 'react-native';
 import {createDate} from '../../utils/date';
 import {Text} from 'native-base';
+import {PLACEHOLDER_COLOR} from '../../constants';
 
 const style = StyleSheet.create({
   card: {
@@ -42,7 +43,9 @@ export const HistoryOfExpense = () => {
             <Expense {...expense} key={expense.id} />
           ))
         ) : (
-          <Text>Vous n'avez pas encore de dépense.</Text>
+          <Text color={PLACEHOLDER_COLOR}>
+            Vous n'avez pas encore de dépense.
+          </Text>
         )}
       </ScrollView>
     </>
