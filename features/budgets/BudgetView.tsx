@@ -31,7 +31,7 @@ export const BudgetView = () => {
 
   const handleClickRemove = () => {
     setIsLoading(true);
-    BudgetService.remove(budgetFinded!!)
+    BudgetService.remove(budgetId)
       .then(() => dispatch(removeBudget(budgetFinded!!)))
       .finally(() => setIsLoading(false));
     // TODO: traiter l'erreur

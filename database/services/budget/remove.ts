@@ -1,24 +1,13 @@
-import {TBudget} from '../../../types/TBudget';
 import {databaseClient} from '../../databaseClient';
 
-export const remove = async (budget: TBudget) => {
+export const remove = async (id: string) => {
   // TODO: improve !
   return await databaseClient
-    .from('expenses')
+    .from('budgets')
     .delete()
-    .eq('budgetid', budget.id)
+    .eq('id', id)
     .then(response => {
-      if (response.status === 204) {
-        databaseClient
-          .from('budgets')
-          .delete()
-          .eq('id', budget.id)
-          .then(responseTwo => {
-            if (responseTwo.status !== 204) {
-              throw new Error("Budget couldn't be removed");
-            }
-          });
-      } else {
+      if (response.status !== 204) {
         throw new Error("Expenses couldn't be removed");
       }
     });
