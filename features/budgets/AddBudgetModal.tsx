@@ -1,8 +1,9 @@
 import React, {useContext, useState} from 'react';
-import {Button, Modal, Text, TextInput} from 'react-native';
 import {AppContext} from '../../context/AppContext';
 import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
+import {Box, Button, Heading, Input, Modal, Radio, Text} from 'native-base';
+import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -40,20 +41,51 @@ export const AddBudgetModal = ({
   };
 
   return (
-    <Modal animationType="slide" visible={isVisible}>
-      <Text>Ajouter un budget</Text>
-      <Text>Nom :</Text>
-      <TextInput onChange={event => setBudgetName(event.nativeEvent.text)} />
-      <Text>Montant :</Text>
-      <TextInput onChange={event => setBudgetAmount(event.nativeEvent.text)} />
-      <Text>Type :</Text>
-      <TextInput
-        onChange={() => {
-          /** TODO */
-        }}
-      />
-      <Button title="Ajouter" onPress={handleAddBudget} />
-      <Button title="Fermer" onPress={handleClose} />
+    <Modal isOpen={isVisible} onClose={handleClose}>
+      <Modal.Content>
+        <Modal.Body>
+          <Heading size="md" marginBottom={4}>
+            Ajout un budget
+          </Heading>
+          <Text>Nom :</Text>
+          <Input
+            width="100%"
+            marginBottom={3}
+            onChangeText={text => setBudgetName(text)}
+          />
+          <Text>Montant :</Text>
+          <Input
+            width="100%"
+            marginBottom={3} // 6 pour le dernier
+            onChangeText={text => setBudgetAmount(text)}
+          />
+          <Text>Type :</Text>
+          <Radio.Group
+            name="budgetType"
+            value={type}
+            onChange={event =>
+              setBudgetType(event as 'variable' | 'fixed' | 'saved')
+            }>
+            <Radio value="variable">Variable</Radio>
+            <Radio value="fixed">Fixe</Radio>
+            <Radio value="saved">Épargne</Radio>
+          </Radio.Group>
+          <Box flexDirection="row" marginTop={6}>
+            <Button
+              onPress={handleAddBudget}
+              backgroundColor={PRIMARY_COLOR}
+              marginRight={4}>
+              Ajouter
+            </Button>
+            <Button
+              onPress={handleClose}
+              backgroundColor={SUBTLE_COLOR}
+              _text={{color: SUBTLE_TEXT_COLOR}}>
+              Fermer
+            </Button>
+          </Box>
+        </Modal.Body>
+      </Modal.Content>
     </Modal>
   );
 };
