@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {TExpense} from '../../../types/TExpense';
 import {StyleSheet} from 'react-native';
 import {formatDate} from '../../../utils/date';
 import {Box, Text} from 'native-base';
-import {PRIMARY_COLOR} from '../../../constants';
+import {PLACEHOLDER_COLOR, PRIMARY_COLOR} from '../../../constants';
+import {AppContext} from '../../../context/AppContext';
 
 const style = StyleSheet.create({
   card: {
@@ -23,16 +24,33 @@ const style = StyleSheet.create({
   },
 });
 
-export const Expense = ({details, date, value}: TExpense) => (
-  <Box style={style.card}>
-    <Box style={style.point} />
-    <Box style={style.infos}>
-      <Text>
-        {formatDate(date)} - {details}
-      </Text>
-      <Text bold fontSize="md">
-        {value} €
-      </Text>
+export const Expense = ({
+  accountid,
+  budgetid,
+  details,
+  date,
+  value,
+}: TExpense) => {
+  const {appState} = useContext(AppContext);
+  const {accounts, budgets} = appState || {};
+
+  const accountFinded = accounts.find(account => account.id === accountid);
+  const budgetFinded = budgets.find(budget => budget.id === budgetid);
+
+  return (
+    <Box style={style.card}>
+      <Box style={style.point} />
+      <Box style={style.infos}>
+        <Text>
+          {formatDate(date)} - {details}
+        </Text>
+        <Text color={PLACEHOLDER_COLOR}>
+          Compte : {accountFinded?.name} | Budget : {budgetFinded?.name}
+        </Text>
+        <Text bold fontSize="md">
+          {value} €
+        </Text>
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};

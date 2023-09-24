@@ -1,7 +1,11 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {AddIcon, Box, Button, Input, MinusIcon, Text} from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR} from '../../../constants';
+import {
+  PRIMARY_COLOR,
+  SUBTLE_COLOR,
+  SUBTLE_TEXT_COLOR,
+} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {TBudget} from '../../../types/TBudget';
 import {createTodayDate} from '../../../utils/date';
@@ -89,16 +93,17 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
           leftIcon={<AddIcon color="white" />}
           onPress={() => handleSubmitForm('+')}
           width="47%"
-          backgroundColor="#00b894"
+          backgroundColor={PRIMARY_COLOR}
           isLoading={isLoading}
           isDisabled={isLoading}>
           Ajouter
         </Button>
         <Button
-          leftIcon={<MinusIcon color="white" />}
           onPress={() => handleSubmitForm('-')}
           width="47%"
-          backgroundColor="#d63031"
+          leftIcon={<MinusIcon color={SUBTLE_TEXT_COLOR} />}
+          backgroundColor={SUBTLE_COLOR}
+          _text={{color: SUBTLE_TEXT_COLOR}}
           isLoading={isLoading}
           isDisabled={isLoading}>
           Retirer
