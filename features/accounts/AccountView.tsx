@@ -31,7 +31,7 @@ export const AccountView = () => {
     setIsModalVisible(false);
   };
 
-  const accountId = activeView?.split('-')?.[1] ?? '0';
+  const accountId = activeView?.slice(activeView.indexOf('.') + 1) ?? '0';
   const accountFinded = accounts.find(account => account.id === accountId);
 
   const handleClickRetour = () => {

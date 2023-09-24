@@ -29,7 +29,7 @@ export const AddBudgetModal = ({
     setIsLoading(true);
     const newBudget: TBudget = {
       id: uuid.v4().toString(),
-      accountid: activeView?.split('-')?.[1] ?? '0',
+      accountid: activeView?.slice(activeView.indexOf('.') + 1) ?? '0',
       userid: user?.id ?? '0',
       name,
       type,

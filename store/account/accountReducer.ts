@@ -17,7 +17,7 @@ export const accountReducer = (
     case SELECT_ACCOUNT_TYPE:
       return {
         ...state,
-        activeView: `account-${payload.accountid}`,
+        activeView: `account.${payload.accountid}`,
       };
     case ADD_ACCOUNT_TYPE:
       return {

@@ -22,7 +22,7 @@ export const budgetReducer = (
         expenses: state.expenses.filter(
           expense => expense.budgetid !== payload.id,
         ),
-        activeView: `account-${payload.accountid}`,
+        activeView: `account.${payload.accountid}`,
       };
     default:
       console.error(`Unknown action in budgetReducer, with type: ${type}`);

@@ -21,12 +21,12 @@ export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
   const {activeView, budgets} = appState || {};
   const [isLoading, setIsLoading] = useState(false);
-  const budgetId = activeView?.split('-')?.[1] ?? '0';
+  const budgetId = activeView?.slice(activeView.indexOf('.') + 1) ?? '0';
   const budgetFinded = budgets.find(budget => budget.id === budgetId);
   const {accountid, name, type, base, current} = budgetFinded ?? {};
 
   const handleClickRetour = () => {
-    dispatch(changeView(`account-${accountid}`));
+    dispatch(changeView(`account.${accountid}`));
   };
 
   const handleClickRemove = () => {

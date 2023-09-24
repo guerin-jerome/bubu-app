@@ -11,11 +11,11 @@ const ViewToDisplay = ({activeView}: TViewToDisplayProps) => {
     return <Home />;
   }
 
-  if (activeView?.includes('account-')) {
+  if (activeView?.includes('account.')) {
     return <AccountView />;
   }
 
-  if (activeView?.includes('budget-')) {
+  if (activeView?.includes('budget.')) {
     return <BudgetView />;
   }
 

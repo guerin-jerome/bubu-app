@@ -26,7 +26,7 @@ export const Budget = ({id, name, type, base, current}: TBudget) => {
   const {dispatch} = useContext(AppContext);
 
   const handleClickBudget = () => {
-    dispatch(changeView(`budget-${id}`));
+    dispatch(changeView(`budget.${id}`));
   };
 
   return (

@@ -30,8 +30,8 @@ export const AddAccountModal = ({
     };
     AccountService.create(newAccount)
       .then(account => {
-        dispatch(addAccount(account));
         setAccountName('');
+        dispatch(addAccount(account));
         handleClose();
       })
       .catch(error => console.error(error))
