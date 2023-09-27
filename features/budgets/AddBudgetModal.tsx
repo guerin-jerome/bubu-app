@@ -3,7 +3,7 @@ import {AppContext} from '../../context/AppContext';
 import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
 import {Box, Button, Heading, Input, Modal, Radio, Text} from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
 
@@ -100,7 +100,7 @@ export const AddBudgetModal = ({
               isDisabled={isLoading}
               onPress={handleClose}
               backgroundColor={SUBTLE_COLOR}
-              _text={{color: SUBTLE_TEXT_COLOR}}>
+              _text={{color: SUBTLE_ITEM_COLOR}}>
               Fermer
             </Button>
           </Box>

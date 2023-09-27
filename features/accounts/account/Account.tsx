@@ -4,9 +4,11 @@ import {Pressable, StyleSheet} from 'react-native';
 import {AppContext} from '../../../context/AppContext';
 import {selectAccount} from '../../../store/account/actions';
 import {Text} from 'native-base';
+import {ColorThemeStyle} from '../../../constants';
 
 const style = StyleSheet.create({
   card: {
+    borderColor: ColorThemeStyle.border,
     paddingHorizontal: 15,
     paddingVertical: 10,
     width: 200,
@@ -33,8 +35,8 @@ export const Account = ({id, name}: TAccount) => {
 
   return (
     <Pressable onPress={handleClickAccount} style={style.card}>
-      <Text>{name}</Text>
-      <Text bold fontSize="xl">
+      <Text color={ColorThemeStyle.text}>{name}</Text>
+      <Text bold fontSize="xl" color={ColorThemeStyle.text}>
         {totalRemainingOfAccount} €
       </Text>
     </Pressable>

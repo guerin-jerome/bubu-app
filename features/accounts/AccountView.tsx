@@ -15,7 +15,12 @@ import {
   IconButton,
   Text,
 } from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {
+  ColorThemeStyle,
+  PRIMARY_COLOR,
+  SUBTLE_COLOR,
+  SUBTLE_ITEM_COLOR,
+} from '../../constants';
 
 export const AccountView = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -64,15 +69,17 @@ export const AccountView = () => {
           size="sm"
           onPress={handleClickRemove}
           backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_TEXT_COLOR}}
+          _text={{color: SUBTLE_ITEM_COLOR}}
           variant="subtle"
           isLoading={isLoading}
           isDisabled={isLoading}>
           Supprimer compte
         </Button>
       </Box>
-      <Text>Nom de votre compte :</Text>
-      <Heading size="sm">{accountFinded?.name}</Heading>
+      <Text color={ColorThemeStyle.text}>Nom de votre compte :</Text>
+      <Heading size="sm" color={ColorThemeStyle.text}>
+        {accountFinded?.name}
+      </Heading>
       <Divider marginY={3} />
       <Box
         marginBottom="20px"
@@ -80,7 +87,7 @@ export const AccountView = () => {
         flexDir="row"
         justifyContent="space-between"
         alignItems="center">
-        <Text>Vos budgets :</Text>
+        <Text color={ColorThemeStyle.text}>Vos budgets :</Text>
         <IconButton
           onPress={handleOpenModal}
           size="sm"

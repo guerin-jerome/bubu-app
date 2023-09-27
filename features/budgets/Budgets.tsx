@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {Budget} from './budget/Budget';
 import {TBudgetsProps} from '../../types/components/TBudgetsProps';
-import {PLACEHOLDER_COLOR} from '../../constants';
+import {ColorThemeStyle} from '../../constants';
 import {Text} from 'native-base';
 
 export const Budgets = ({accountid}: TBudgetsProps) => {
@@ -20,7 +20,7 @@ export const Budgets = ({accountid}: TBudgetsProps) => {
       {hasBudgets ? (
         filteredBudgets.map(budget => <Budget {...budget} key={budget.id} />)
       ) : (
-        <Text color={PLACEHOLDER_COLOR}>
+        <Text color={ColorThemeStyle.placeholder}>
           Vous n'avez pas encore de budgets.
         </Text>
       )}

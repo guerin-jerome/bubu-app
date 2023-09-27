@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import {Authentication} from './features/authentication/Authentication';
 import {AppContext} from './context/AppContext';
 import {Home} from './features/home/Home';
 import {AccountView} from './features/accounts/AccountView';

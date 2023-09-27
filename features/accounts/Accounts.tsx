@@ -4,7 +4,7 @@ import {AppContext} from '../../context/AppContext';
 import {Account} from './account/Account';
 import {AddAccountModal} from './AddAccountModal';
 import {AddIcon, Box, IconButton, Text} from 'native-base';
-import {PLACEHOLDER_COLOR, PRIMARY_COLOR} from '../../constants';
+import {ColorThemeStyle, PRIMARY_COLOR} from '../../constants';
 
 const style = StyleSheet.create({
   scrollingList: {
@@ -36,7 +36,7 @@ export const Accounts = () => {
         flexDir="row"
         justifyContent="space-between"
         alignItems="center">
-        <Text>Vos comptes :</Text>
+        <Text color={ColorThemeStyle.text}>Vos comptes :</Text>
         <IconButton
           onPress={handleOpenModal}
           size="sm"
@@ -51,7 +51,7 @@ export const Accounts = () => {
           ))}
         </ScrollView>
       ) : (
-        <Text paddingBottom={15} color={PLACEHOLDER_COLOR}>
+        <Text paddingBottom={15} color={ColorThemeStyle.placeholder}>
           Vous n'avez pas encore de compte.
         </Text>
       )}

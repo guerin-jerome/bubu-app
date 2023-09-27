@@ -11,7 +11,12 @@ import {
   Progress,
   Text,
 } from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {
+  ColorThemeStyle,
+  PRIMARY_COLOR,
+  SUBTLE_COLOR,
+  SUBTLE_ITEM_COLOR,
+} from '../../constants';
 import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
@@ -60,18 +65,18 @@ export const BudgetView = () => {
           size="sm"
           onPress={handleClickRemove}
           backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_TEXT_COLOR}}
+          _text={{color: SUBTLE_ITEM_COLOR}}
           variant="subtle">
           Supprimer budget
         </Button>
       </Box>
-      <Text>Nom de votre budget :</Text>
-      <Heading size="sm">
+      <Text color={ColorThemeStyle.text}>Nom de votre budget :</Text>
+      <Heading size="sm" color={ColorThemeStyle.text}>
         {name} - {formatType(type)}
       </Heading>
       <Divider marginY={3} />
-      <Text>Total restant :</Text>
-      <Text bold fontSize="xl">
+      <Text color={ColorThemeStyle.text}>Total restant :</Text>
+      <Text bold fontSize="xl" color={ColorThemeStyle.text}>
         {budgetIndicator}
       </Text>
       <Progress

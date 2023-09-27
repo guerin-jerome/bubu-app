@@ -4,11 +4,11 @@ import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
 import {HistoryOfExpense} from '../expense/HistoryOfExpense';
 import {Box, Button, Heading} from 'native-base';
-import {SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
-import {Dimensions} from 'react-native';
-
-export const {height: screenHeight, width: screenWidth} =
-  Dimensions.get('window');
+import {
+  ColorThemeStyle,
+  SUBTLE_COLOR,
+  SUBTLE_ITEM_COLOR,
+} from '../../constants';
 
 export const Home = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -26,12 +26,14 @@ export const Home = () => {
         flexDir="row"
         justifyContent="space-between"
         alignItems="center">
-        <Heading size="md">Bonjour {name}</Heading>
+        <Heading size="md" color={ColorThemeStyle.text}>
+          Bonjour {name}
+        </Heading>
         <Button
           size="sm"
           onPress={handleClickDeconnexion}
           backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_TEXT_COLOR}}
+          _text={{color: SUBTLE_ITEM_COLOR}}
           variant="subtle">
           Déconnexion
         </Button>

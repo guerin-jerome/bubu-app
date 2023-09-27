@@ -4,10 +4,11 @@ import {Expense} from './expense/Expense';
 import {ScrollView, StyleSheet} from 'react-native';
 import {createDate} from '../../utils/date';
 import {Text} from 'native-base';
-import {PLACEHOLDER_COLOR} from '../../constants';
+import {ColorThemeStyle} from '../../constants';
 
 const style = StyleSheet.create({
   card: {
+    borderColor: ColorThemeStyle.border,
     padding: 15,
     maxHeight: 350,
     width: '100%',
@@ -36,14 +37,16 @@ export const HistoryOfExpense = () => {
 
   return (
     <>
-      <Text marginBottom="15px">Historique de vos dépenses :</Text>
+      <Text marginBottom="15px" color={ColorThemeStyle.text}>
+        Historique de vos dépenses :
+      </Text>
       <ScrollView style={style.card}>
         {hasExpense ? (
           expensesToDisplay.map(expense => (
             <Expense {...expense} key={expense.id} />
           ))
         ) : (
-          <Text color={PLACEHOLDER_COLOR}>
+          <Text color={ColorThemeStyle.placeholder}>
             Vous n'avez pas encore de dépense.
           </Text>
         )}

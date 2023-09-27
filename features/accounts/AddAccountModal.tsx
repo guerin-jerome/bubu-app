@@ -3,7 +3,7 @@ import {AccountService} from '../../database/services/account/account';
 import {AppContext} from '../../context/AppContext';
 import {addAccount} from '../../store/account/actions';
 import {Box, Button, Heading, Input, Modal, Text} from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_TEXT_COLOR} from '../../constants';
+import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import {TAccount} from '../../types/TAccount';
 import uuid from 'react-native-uuid';
 
@@ -69,7 +69,7 @@ export const AddAccountModal = ({
               isDisabled={isLoading}
               onPress={handleClose}
               backgroundColor={SUBTLE_COLOR}
-              _text={{color: SUBTLE_TEXT_COLOR}}>
+              _text={{color: SUBTLE_ITEM_COLOR}}>
               Fermer
             </Button>
           </Box>

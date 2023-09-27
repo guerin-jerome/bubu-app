@@ -2,9 +2,10 @@ import React, {useContext, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {AddIcon, Box, Button, Input, MinusIcon, Text} from 'native-base';
 import {
+  ColorThemeStyle,
   PRIMARY_COLOR,
   SUBTLE_COLOR,
-  SUBTLE_TEXT_COLOR,
+  SUBTLE_ITEM_COLOR,
 } from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {TBudget} from '../../../types/TBudget';
@@ -16,6 +17,7 @@ import uuid from 'react-native-uuid';
 
 const style = StyleSheet.create({
   card: {
+    borderColor: ColorThemeStyle.border,
     paddingHorizontal: 15,
     paddingVertical: 10,
     width: '100%',
@@ -66,19 +68,23 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
 
   return (
     <Box style={style.card}>
-      <Text bold marginBottom={3}>
+      <Text bold marginBottom={3} color={ColorThemeStyle.text}>
         Ajout une dépense
       </Text>
-      <Text>Détails :</Text>
+      <Text color={ColorThemeStyle.text}>Détails :</Text>
       <Input
         isDisabled={isLoading}
         value={details}
         marginBottom={2}
         onChangeText={setDetails}
         focusOutlineColor={PRIMARY_COLOR}
-        _focus={{backgroundColor: SUBTLE_COLOR}}
+        _focus={{
+          backgroundColor: SUBTLE_COLOR,
+          color: ColorThemeStyle.focus,
+        }}
+        color={ColorThemeStyle.text}
       />
-      <Text>Montant :</Text>
+      <Text color={ColorThemeStyle.text}>Montant :</Text>
       <Input
         isDisabled={isLoading}
         value={value}
@@ -86,7 +92,11 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
         marginBottom={2}
         onChangeText={setValue}
         focusOutlineColor={PRIMARY_COLOR}
-        _focus={{backgroundColor: SUBTLE_COLOR}}
+        _focus={{
+          backgroundColor: SUBTLE_COLOR,
+          color: ColorThemeStyle.focus,
+        }}
+        color={ColorThemeStyle.text}
       />
       <Box style={style.actions} marginTop={2}>
         <Button
@@ -101,9 +111,9 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
         <Button
           onPress={() => handleSubmitForm('-')}
           width="47%"
-          leftIcon={<MinusIcon color={SUBTLE_TEXT_COLOR} />}
+          leftIcon={<MinusIcon color={SUBTLE_ITEM_COLOR} />}
           backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_TEXT_COLOR}}
+          _text={{color: SUBTLE_ITEM_COLOR}}
           isLoading={isLoading}
           isDisabled={isLoading}>
           Retirer
