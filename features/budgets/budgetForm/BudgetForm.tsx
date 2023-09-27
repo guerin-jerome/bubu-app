@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet} from 'react-native';
-import {AddIcon, Box, Button, Input, MinusIcon, Text} from 'native-base';
+import {AddIcon, Box, Button, MinusIcon, Text} from 'native-base';
 import {
   ColorThemeStyle,
   PRIMARY_COLOR,
@@ -15,6 +15,7 @@ import {addExpense} from '../../../store/expense/actions';
 import {TExpense} from '../../../types/TExpense';
 import uuid from 'react-native-uuid';
 import {STYLE_CARDS} from '../../../styles';
+import {Input} from '../../../components/Input';
 
 const style = StyleSheet.create({
   actions: {
@@ -64,32 +65,9 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
         Ajout une dépense
       </Text>
       <Text color={ColorThemeStyle.text}>Détails :</Text>
-      <Input
-        isDisabled={isLoading}
-        value={details}
-        marginBottom={2}
-        onChangeText={setDetails}
-        focusOutlineColor={PRIMARY_COLOR}
-        _focus={{
-          backgroundColor: SUBTLE_COLOR,
-          color: ColorThemeStyle.focus,
-        }}
-        color={ColorThemeStyle.text}
-      />
+      <Input isDisabled={isLoading} value={details} onChangeText={setDetails} />
       <Text color={ColorThemeStyle.text}>Montant :</Text>
-      <Input
-        isDisabled={isLoading}
-        value={value}
-        width="100%"
-        marginBottom={2}
-        onChangeText={setValue}
-        focusOutlineColor={PRIMARY_COLOR}
-        _focus={{
-          backgroundColor: SUBTLE_COLOR,
-          color: ColorThemeStyle.focus,
-        }}
-        color={ColorThemeStyle.text}
-      />
+      <Input isDisabled={isLoading} value={value} onChangeText={setValue} />
       <Box style={style.actions} marginTop={2}>
         <Button
           leftIcon={<AddIcon color="white" />}

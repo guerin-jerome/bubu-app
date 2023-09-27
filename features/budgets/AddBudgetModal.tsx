@@ -2,10 +2,11 @@ import React, {useContext, useState} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
-import {Box, Button, Heading, Input, Modal, Radio, Text} from 'native-base';
+import {Box, Button, Heading, Modal, Radio, Text} from 'native-base';
 import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
+import {Input} from '../../components/Input';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -53,21 +54,9 @@ export const AddBudgetModal = ({
             Ajouter un budget
           </Heading>
           <Text>Nom :</Text>
-          <Input
-            width="100%"
-            marginBottom={3}
-            onChangeText={text => setBudgetName(text)}
-            focusOutlineColor={PRIMARY_COLOR}
-            _focus={{backgroundColor: SUBTLE_COLOR}}
-          />
+          <Input onChangeText={setBudgetName} />
           <Text>Montant :</Text>
-          <Input
-            width="100%"
-            marginBottom={3}
-            onChangeText={text => setBudgetAmount(text)}
-            focusOutlineColor={PRIMARY_COLOR}
-            _focus={{backgroundColor: SUBTLE_COLOR}}
-          />
+          <Input onChangeText={setBudgetAmount} />
           <Text>Type :</Text>
           <Radio.Group
             name="budgetType"

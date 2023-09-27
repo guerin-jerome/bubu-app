@@ -3,13 +3,9 @@ import {AuthenticationService} from '../../../database/services/authentication/a
 import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
-import {Box, Button, FormControl, Heading, Image, Input} from 'native-base';
-import {
-  ColorThemeStyle,
-  LOGO_URI,
-  PRIMARY_COLOR,
-  SUBTLE_COLOR,
-} from '../../../constants';
+import {Box, Button, FormControl, Heading, Image} from 'native-base';
+import {ColorThemeStyle, LOGO_URI, PRIMARY_COLOR} from '../../../constants';
+import {Input} from '../../../components/Input';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);
@@ -33,17 +29,7 @@ export const Login = () => {
       </Heading>
       <FormControl maxW="280px">
         <FormControl.Label>Email :</FormControl.Label>
-        <Input
-          onChangeText={text => setEmail(text)}
-          marginBottom={2}
-          autoComplete="email"
-          focusOutlineColor={PRIMARY_COLOR}
-          _focus={{
-            backgroundColor: SUBTLE_COLOR,
-            color: ColorThemeStyle.focus,
-          }}
-          color={ColorThemeStyle.text}
-        />
+        <Input onChangeText={setEmail} autoComplete="email" />
         <Button
           backgroundColor={PRIMARY_COLOR}
           onPress={handleSubmit}
