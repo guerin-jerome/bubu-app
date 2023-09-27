@@ -1,22 +1,11 @@
 import React, {useContext} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {Expense} from './expense/Expense';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native';
 import {createDate} from '../../utils/date';
 import {Text} from 'native-base';
 import {ColorThemeStyle} from '../../constants';
-
-const style = StyleSheet.create({
-  card: {
-    borderColor: ColorThemeStyle.border,
-    padding: 15,
-    maxHeight: 350,
-    width: '100%',
-    marginRight: 10,
-    borderWidth: 2,
-    borderRadius: 5,
-  },
-});
+import {STYLE_CARDS} from '../../styles';
 
 export const HistoryOfExpense = () => {
   const {appState} = useContext(AppContext);
@@ -40,7 +29,7 @@ export const HistoryOfExpense = () => {
       <Text marginBottom="15px" color={ColorThemeStyle.text}>
         Historique de vos dépenses :
       </Text>
-      <ScrollView style={style.card}>
+      <ScrollView style={STYLE_CARDS.historyOfExpense}>
         {hasExpense ? (
           expensesToDisplay.map(expense => (
             <Expense {...expense} key={expense.id} />

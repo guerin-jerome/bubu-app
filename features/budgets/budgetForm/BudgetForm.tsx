@@ -14,17 +14,9 @@ import {ExpenseService} from '../../../database/services/expense/expense';
 import {addExpense} from '../../../store/expense/actions';
 import {TExpense} from '../../../types/TExpense';
 import uuid from 'react-native-uuid';
+import {STYLE_CARDS} from '../../../styles';
 
 const style = StyleSheet.create({
-  card: {
-    borderColor: ColorThemeStyle.border,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    width: '100%',
-    marginRight: 10,
-    borderWidth: 2,
-    borderRadius: 5,
-  },
   actions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -67,7 +59,7 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
   };
 
   return (
-    <Box style={style.card}>
+    <Box style={STYLE_CARDS.budgetForm}>
       <Text bold marginBottom={3} color={ColorThemeStyle.text}>
         Ajout une dépense
       </Text>

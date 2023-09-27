@@ -1,24 +1,11 @@
 import React, {useContext} from 'react';
 import {TAccount} from '../../../types/TAccount';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable} from 'react-native';
 import {AppContext} from '../../../context/AppContext';
 import {selectAccount} from '../../../store/account/actions';
 import {Text} from 'native-base';
 import {ColorThemeStyle} from '../../../constants';
-
-const style = StyleSheet.create({
-  card: {
-    borderColor: ColorThemeStyle.border,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    width: 200,
-    marginRight: 10,
-    borderWidth: 2,
-    borderRadius: 5,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-});
+import {STYLE_CARDS} from '../../../styles';
 
 export const Account = ({id, name}: TAccount) => {
   const {appState, dispatch} = useContext(AppContext);
@@ -34,7 +21,7 @@ export const Account = ({id, name}: TAccount) => {
   };
 
   return (
-    <Pressable onPress={handleClickAccount} style={style.card}>
+    <Pressable onPress={handleClickAccount} style={STYLE_CARDS.account}>
       <Text color={ColorThemeStyle.text}>{name}</Text>
       <Text bold fontSize="xl" color={ColorThemeStyle.text}>
         {totalRemainingOfAccount} €

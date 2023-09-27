@@ -6,16 +6,9 @@ import {ColorThemeStyle, PRIMARY_COLOR} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {changeView} from '../../../store/views/actions';
 import {formatType} from '../../../utils/budget';
+import {STYLE_CARDS} from '../../../styles';
 
 const style = StyleSheet.create({
-  card: {
-    borderColor: ColorThemeStyle.border,
-    width: '100%',
-    borderWidth: 2,
-    borderRadius: 5,
-    marginBottom: 15,
-    padding: 10,
-  },
   budgetHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -57,7 +50,7 @@ export const Budget = ({id, name, type, base, current}: TBudget) => {
   };
 
   return (
-    <Pressable style={style.card} onPress={handleClickBudget}>
+    <Pressable style={STYLE_CARDS.budget} onPress={handleClickBudget}>
       <Box style={style.budgetHeader}>
         <Text color={ColorThemeStyle.text}>{name}</Text>
         <Text color={ColorThemeStyle.text}>{formatType(type)}</Text>
