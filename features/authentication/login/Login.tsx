@@ -4,7 +4,7 @@ import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
 import {Box, Button, FormControl, Heading, Image} from 'native-base';
-import {ColorThemeStyle, LOGO_URI, PRIMARY_COLOR} from '../../../constants';
+import {APP_LOGO, ColorThemeStyle, PRIMARY_COLOR} from '../../../constants';
 import {Input} from '../../../components/Input';
 
 export const Login = () => {
@@ -23,7 +23,7 @@ export const Login = () => {
 
   return (
     <Box paddingTop={100} alignItems="center">
-      <Image source={{uri: LOGO_URI}} size="xl" alt="logo de l'application" />
+      <Image source={APP_LOGO} size="xl" alt="logo de l'application" />
       <Heading size="md" marginBottom={10} color={ColorThemeStyle.text}>
         Bienvenue dans Bubu
       </Heading>

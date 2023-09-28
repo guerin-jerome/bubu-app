@@ -3,7 +3,7 @@ import {Appearance, Dimensions} from 'react-native';
 export const {height: screenHeight, width: screenWidth} =
   Dimensions.get('window');
 
-export const PRIMARY_COLOR = '#e84393';
+export const PRIMARY_COLOR = '#a34a78';
 export const SUBTLE_COLOR = '#fce7f3';
 export const SUBTLE_ITEM_COLOR = '#831943';
 const BLACK_COLOR = '#02130b';
@@ -27,10 +27,10 @@ export const COLOR_THEME = {
   },
 };
 
-export const LOGO_URI =
+export const APP_LOGO =
   Appearance.getColorScheme() === 'dark'
-    ? 'https://i.postimg.cc/YqdJRp8z/Design-sans-titre-1.png'
-    : 'https://i.postimg.cc/j2DsXt6B/Design-sans-titre.png';
+    ? require('./assets/bubu_logo_dark.png')
+    : require('./assets/bubu_logo_light.png');
 
 export const ColorThemeStyle =
   Appearance.getColorScheme() === 'dark' ? COLOR_THEME.dark : COLOR_THEME.light;
