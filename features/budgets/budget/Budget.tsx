@@ -6,7 +6,7 @@ import {AppContext} from '../../../context/AppContext';
 import {changeView} from '../../../store/views/actions';
 import {formatType} from '../../../utils/budget';
 import {STYLE_CARDS} from '../../../styles';
-import {Text} from '../../../components/Text';
+import {Text} from '../../../components';
 import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({

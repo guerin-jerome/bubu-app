@@ -6,9 +6,7 @@ import {Box, Button, Modal, Radio} from 'native-base';
 import {COLOR_THEME} from '../../constants';
 import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
-import {Input} from '../../components/Input';
-import {Text} from '../../components/Text';
-import {Heading} from '../../components/Heading';
+import {Input, Text, Heading} from '../../components';
 
 type TAddAccountModalProps = {
   isVisible: boolean;

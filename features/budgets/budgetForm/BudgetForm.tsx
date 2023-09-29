@@ -9,8 +9,7 @@ import {addExpense} from '../../../store/expense/actions';
 import {TExpense} from '../../../types/TExpense';
 import uuid from 'react-native-uuid';
 import {STYLE_CARDS} from '../../../styles';
-import {Input} from '../../../components/Input';
-import {Text} from '../../../components/Text';
+import {Input, Text} from '../../../components';
 import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({

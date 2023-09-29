@@ -13,8 +13,7 @@ import {
   Divider,
   IconButton,
 } from 'native-base';
-import {Text} from '../../components/Text';
-import {Subheading} from '../../components/Subheading';
+import {Text, Subheading} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 export const AccountView = () => {

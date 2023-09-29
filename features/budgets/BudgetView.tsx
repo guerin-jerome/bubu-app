@@ -13,8 +13,7 @@ import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
 import {BudgetForm} from './budgetForm/BudgetForm';
-import {Text} from '../../components/Text';
-import {Subheading} from '../../components/Subheading';
+import {Text, Subheading} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 export const BudgetView = () => {

@@ -2,8 +2,6 @@ import React, {useContext} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {Budget} from './budget/Budget';
 import {TBudgetsProps} from '../../types/components/TBudgetsProps';
-import {ColorThemeStyle} from '../../constants';
-import {Text} from 'native-base';
 import {Placeholder} from '../../components/Placeholder';
 
 export const Budgets = ({accountid}: TBudgetsProps) => {

@@ -2,12 +2,11 @@ import React, {useContext, useState} from 'react';
 import {AccountService} from '../../database/services/account/account';
 import {AppContext} from '../../context/AppContext';
 import {addAccount} from '../../store/account/actions';
-import {Box, Button, Modal, Text} from 'native-base';
+import {Box, Button, Modal} from 'native-base';
 import {COLOR_THEME} from '../../constants';
 import {TAccount} from '../../types/TAccount';
+import {Input, Heading, Text} from '../../components';
 import uuid from 'react-native-uuid';
-import {Input} from '../../components/Input';
-import {Heading} from '../../components/Heading';
 
 type TAddAccountModalProps = {
   isVisible: boolean;

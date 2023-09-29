@@ -4,8 +4,7 @@ import {StyleSheet} from 'react-native';
 import {formatDate} from '../../../utils/date';
 import {Box} from 'native-base';
 import {AppContext} from '../../../context/AppContext';
-import {Placeholder} from '../../../components/Placeholder';
-import {Text} from '../../../components/Text';
+import {Placeholder, Text} from '../../../components';
 import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({

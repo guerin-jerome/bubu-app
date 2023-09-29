@@ -5,8 +5,7 @@ import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
 import {Box, Button, FormControl, Image} from 'native-base';
 import {APP_LOGO, COLOR_THEME} from '../../../constants';
-import {Input} from '../../../components/Input';
-import {Heading} from '../../../components/Heading';
+import {Input, Heading} from '../../../components';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);

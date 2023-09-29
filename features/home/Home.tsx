@@ -4,7 +4,7 @@ import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
 import {HistoryOfExpense} from '../expense/HistoryOfExpense';
 import {Box, Button} from 'native-base';
-import {Heading} from '../../components/Heading';
+import {Heading} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 export const Home = () => {

@@ -4,8 +4,7 @@ import {AppContext} from '../../context/AppContext';
 import {Account} from './account/Account';
 import {AddAccountModal} from './AddAccountModal';
 import {AddIcon, Box, IconButton} from 'native-base';
-import {Text} from '../../components/Text';
-import {Placeholder} from '../../components/Placeholder';
+import {Text, Placeholder} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 const style = StyleSheet.create({

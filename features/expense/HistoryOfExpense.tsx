@@ -4,8 +4,7 @@ import {Expense} from './expense/Expense';
 import {ScrollView} from 'react-native';
 import {createDate} from '../../utils/date';
 import {STYLE_CARDS} from '../../styles';
-import {Placeholder} from '../../components/Placeholder';
-import {Text} from '../../components/Text';
+import {Placeholder, Text} from '../../components';
 
 export const HistoryOfExpense = () => {
   const {appState} = useContext(AppContext);

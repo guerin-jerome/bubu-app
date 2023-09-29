@@ -4,7 +4,7 @@ import {Pressable} from 'react-native';
 import {AppContext} from '../../../context/AppContext';
 import {selectAccount} from '../../../store/account/actions';
 import {STYLE_CARDS} from '../../../styles';
-import {Text} from '../../../components/Text';
+import {Text} from '../../../components';
 
 export const Account = ({id, name}: TAccount) => {
   const {appState, dispatch} = useContext(AppContext);
