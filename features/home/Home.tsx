@@ -3,12 +3,9 @@ import {AppContext} from '../../context/AppContext';
 import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
 import {HistoryOfExpense} from '../expense/HistoryOfExpense';
-import {Box, Button, Heading} from 'native-base';
-import {
-  ColorThemeStyle,
-  SUBTLE_COLOR,
-  SUBTLE_ITEM_COLOR,
-} from '../../constants';
+import {Box, Button} from 'native-base';
+import {SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
+import {Heading} from '../../components/Heading';
 
 export const Home = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -26,9 +23,7 @@ export const Home = () => {
         flexDir="row"
         justifyContent="space-between"
         alignItems="center">
-        <Heading size="md" color={ColorThemeStyle.text}>
-          Bonjour {name}
-        </Heading>
+        <Heading>Bonjour {name}</Heading>
         <Button
           size="sm"
           onPress={handleClickDeconnexion}

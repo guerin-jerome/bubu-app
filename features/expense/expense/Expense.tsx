@@ -2,9 +2,11 @@ import React, {useContext} from 'react';
 import {TExpense} from '../../../types/TExpense';
 import {StyleSheet} from 'react-native';
 import {formatDate} from '../../../utils/date';
-import {Box, Text} from 'native-base';
-import {ColorThemeStyle, PRIMARY_COLOR} from '../../../constants';
+import {Box} from 'native-base';
+import {PRIMARY_COLOR} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
+import {Placeholder} from '../../../components/Placeholder';
+import {Text} from '../../../components/Text';
 
 const style = StyleSheet.create({
   card: {
@@ -41,13 +43,13 @@ export const Expense = ({
     <Box style={style.card}>
       <Box style={style.point} />
       <Box style={style.infos}>
-        <Text color={ColorThemeStyle.text}>
+        <Text>
           {formatDate(date)} - {details}
         </Text>
-        <Text color={ColorThemeStyle.placeholder}>
+        <Placeholder>
           Compte : {accountFinded?.name} | Budget : {budgetFinded?.name}
-        </Text>
-        <Text bold fontSize="md" color={ColorThemeStyle.text}>
+        </Placeholder>
+        <Text bold fontSize="md">
           {value} €
         </Text>
       </Box>

@@ -4,6 +4,7 @@ import {Budget} from './budget/Budget';
 import {TBudgetsProps} from '../../types/components/TBudgetsProps';
 import {ColorThemeStyle} from '../../constants';
 import {Text} from 'native-base';
+import {Placeholder} from '../../components/Placeholder';
 
 export const Budgets = ({accountid}: TBudgetsProps) => {
   const {appState} = useContext(AppContext);
@@ -20,9 +21,7 @@ export const Budgets = ({accountid}: TBudgetsProps) => {
       {hasBudgets ? (
         filteredBudgets.map(budget => <Budget {...budget} key={budget.id} />)
       ) : (
-        <Text color={ColorThemeStyle.placeholder}>
-          Vous n'avez pas encore de budgets.
-        </Text>
+        <Placeholder>Vous n'avez pas encore de budgets.</Placeholder>
       )}
     </>
   );

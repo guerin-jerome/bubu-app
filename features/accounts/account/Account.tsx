@@ -3,9 +3,8 @@ import {TAccount} from '../../../types/TAccount';
 import {Pressable} from 'react-native';
 import {AppContext} from '../../../context/AppContext';
 import {selectAccount} from '../../../store/account/actions';
-import {Text} from 'native-base';
-import {ColorThemeStyle} from '../../../constants';
 import {STYLE_CARDS} from '../../../styles';
+import {Text} from '../../../components/Text';
 
 export const Account = ({id, name}: TAccount) => {
   const {appState, dispatch} = useContext(AppContext);
@@ -22,8 +21,8 @@ export const Account = ({id, name}: TAccount) => {
 
   return (
     <Pressable onPress={handleClickAccount} style={STYLE_CARDS.account}>
-      <Text color={ColorThemeStyle.text}>{name}</Text>
-      <Text bold fontSize="xl" color={ColorThemeStyle.text}>
+      <Text>{name}</Text>
+      <Text bold fontSize="xl">
         {totalRemainingOfAccount} €
       </Text>
     </Pressable>

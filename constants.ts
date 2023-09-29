@@ -25,6 +25,12 @@ export const COLOR_THEME = {
     placeholder: GRAY_COLOR,
     focus: BLACK_COLOR,
   },
+  black: BLACK_COLOR,
+  white: WHITE_COLOR,
+  gray: GRAY_COLOR,
+  primary: PRIMARY_COLOR,
+  subtle: SUBTLE_COLOR,
+  subtleItem: SUBTLE_ITEM_COLOR,
 };
 
 export const APP_LOGO =

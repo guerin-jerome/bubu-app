@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
 import {TBudget} from '../../../types/TBudget';
 import {Pressable, StyleSheet} from 'react-native';
-import {Box, Progress, Text} from 'native-base';
-import {ColorThemeStyle, PRIMARY_COLOR} from '../../../constants';
+import {Box, Progress} from 'native-base';
+import {PRIMARY_COLOR} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {changeView} from '../../../store/views/actions';
 import {formatType} from '../../../utils/budget';
 import {STYLE_CARDS} from '../../../styles';
+import {Text} from '../../../components/Text';
 
 const style = StyleSheet.create({
   budgetHeader: {
@@ -23,7 +24,7 @@ type TBudgetBody = {
 
 const BudgetBody = ({base, current}: TBudgetBody) => (
   <>
-    <Text bold fontSize="sm" color={ColorThemeStyle.text}>
+    <Text bold fontSize="sm">
       {current} € / {base} €
     </Text>
     <Progress
@@ -35,7 +36,7 @@ const BudgetBody = ({base, current}: TBudgetBody) => (
 
 const SavedBudgetBody = ({current}: TBudgetBody) => (
   <>
-    <Text bold fontSize="sm" color={ColorThemeStyle.text}>
+    <Text bold fontSize="sm">
       {current} €
     </Text>
     <Progress _filledTrack={{backgroundColor: PRIMARY_COLOR}} value={100} />
@@ -52,8 +53,8 @@ export const Budget = ({id, name, type, base, current}: TBudget) => {
   return (
     <Pressable style={STYLE_CARDS.budget} onPress={handleClickBudget}>
       <Box style={style.budgetHeader}>
-        <Text color={ColorThemeStyle.text}>{name}</Text>
-        <Text color={ColorThemeStyle.text}>{formatType(type)}</Text>
+        <Text>{name}</Text>
+        <Text>{formatType(type)}</Text>
       </Box>
       {type === 'saved' ? (
         <SavedBudgetBody base={base} current={current} />

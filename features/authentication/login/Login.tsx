@@ -3,9 +3,10 @@ import {AuthenticationService} from '../../../database/services/authentication/a
 import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
-import {Box, Button, FormControl, Heading, Image} from 'native-base';
-import {APP_LOGO, ColorThemeStyle, PRIMARY_COLOR} from '../../../constants';
+import {Box, Button, FormControl, Image} from 'native-base';
+import {APP_LOGO, PRIMARY_COLOR} from '../../../constants';
 import {Input} from '../../../components/Input';
+import {Heading} from '../../../components/Heading';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);
@@ -24,9 +25,7 @@ export const Login = () => {
   return (
     <Box paddingTop={100} alignItems="center">
       <Image source={APP_LOGO} size="xl" alt="logo de l'application" />
-      <Heading size="md" marginBottom={10} color={ColorThemeStyle.text}>
-        Bienvenue dans Bubu
-      </Heading>
+      <Heading marginBottom={10}>Bienvenue dans Bubu</Heading>
       <FormControl maxW="280px">
         <FormControl.Label>Email :</FormControl.Label>
         <Input onChangeText={setEmail} autoComplete="email" />

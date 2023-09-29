@@ -6,21 +6,16 @@ import {
   Box,
   Button,
   Divider,
-  Heading,
   IconButton,
   Progress,
-  Text,
 } from 'native-base';
-import {
-  ColorThemeStyle,
-  PRIMARY_COLOR,
-  SUBTLE_COLOR,
-  SUBTLE_ITEM_COLOR,
-} from '../../constants';
+import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
 import {BudgetForm} from './budgetForm/BudgetForm';
+import {Text} from '../../components/Text';
+import {Subheading} from '../../components/Subheading';
 
 export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -70,13 +65,13 @@ export const BudgetView = () => {
           Supprimer budget
         </Button>
       </Box>
-      <Text color={ColorThemeStyle.text}>Nom de votre budget :</Text>
-      <Heading size="sm" color={ColorThemeStyle.text}>
+      <Text>Nom de votre budget :</Text>
+      <Subheading>
         {name} - {formatType(type)}
-      </Heading>
+      </Subheading>
       <Divider marginY={3} />
-      <Text color={ColorThemeStyle.text}>Total restant :</Text>
-      <Text bold fontSize="xl" color={ColorThemeStyle.text}>
+      <Text>Total restant :</Text>
+      <Text bold fontSize="xl">
         {budgetIndicator}
       </Text>
       <Progress

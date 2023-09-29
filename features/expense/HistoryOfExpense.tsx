@@ -3,9 +3,9 @@ import {AppContext} from '../../context/AppContext';
 import {Expense} from './expense/Expense';
 import {ScrollView} from 'react-native';
 import {createDate} from '../../utils/date';
-import {Text} from 'native-base';
-import {ColorThemeStyle} from '../../constants';
 import {STYLE_CARDS} from '../../styles';
+import {Placeholder} from '../../components/Placeholder';
+import {Text} from '../../components/Text';
 
 export const HistoryOfExpense = () => {
   const {appState} = useContext(AppContext);
@@ -26,18 +26,14 @@ export const HistoryOfExpense = () => {
 
   return (
     <>
-      <Text marginBottom="15px" color={ColorThemeStyle.text}>
-        Historique de vos dépenses :
-      </Text>
+      <Text marginBottom="15px">Historique de vos dépenses :</Text>
       <ScrollView style={STYLE_CARDS.historyOfExpense}>
         {hasExpense ? (
           expensesToDisplay.map(expense => (
             <Expense {...expense} key={expense.id} />
           ))
         ) : (
-          <Text color={ColorThemeStyle.placeholder}>
-            Vous n'avez pas encore de dépense.
-          </Text>
+          <Placeholder>Vous n'avez pas encore de dépense.</Placeholder>
         )}
       </ScrollView>
     </>

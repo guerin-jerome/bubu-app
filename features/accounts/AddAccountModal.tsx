@@ -2,11 +2,17 @@ import React, {useContext, useState} from 'react';
 import {AccountService} from '../../database/services/account/account';
 import {AppContext} from '../../context/AppContext';
 import {addAccount} from '../../store/account/actions';
-import {Box, Button, Heading, Modal, Text} from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
+import {Box, Button, Modal, Text} from 'native-base';
+import {
+  COLOR_THEME,
+  PRIMARY_COLOR,
+  SUBTLE_COLOR,
+  SUBTLE_ITEM_COLOR,
+} from '../../constants';
 import {TAccount} from '../../types/TAccount';
 import uuid from 'react-native-uuid';
 import {Input} from '../../components/Input';
+import {Heading} from '../../components/Heading';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -44,10 +50,10 @@ export const AddAccountModal = ({
     <Modal isOpen={isVisible} onClose={handleClose}>
       <Modal.Content>
         <Modal.Body>
-          <Heading size="md" marginBottom={4}>
+          <Heading color={COLOR_THEME.black} marginBottom={4}>
             Ajouter un compte
           </Heading>
-          <Text>Nom :</Text>
+          <Text color={COLOR_THEME.black}>Nom :</Text>
           <Input onChangeText={setAccountName} />
           <Box marginTop={3} flexDirection="row" justifyContent="space-between">
             <Button
