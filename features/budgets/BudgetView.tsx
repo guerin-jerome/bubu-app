@@ -1,19 +1,12 @@
 import React, {useContext, useState} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {changeView} from '../../store/views/actions';
-import {
-  ArrowBackIcon,
-  Box,
-  Button,
-  Divider,
-  IconButton,
-  Progress,
-} from 'native-base';
+import {ArrowBackIcon, Box, Divider, IconButton, Progress} from 'native-base';
 import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
 import {BudgetForm} from './budgetForm/BudgetForm';
-import {Text, Subheading} from '../../components';
+import {Text, Subheading, Button} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 export const BudgetView = () => {
@@ -54,12 +47,9 @@ export const BudgetView = () => {
           icon={<ArrowBackIcon color="white" />}
         />
         <Button
-          isLoading={isLoading}
-          isDisabled={isLoading}
+          disabled={isLoading}
           size="sm"
           onPress={handleClickRemove}
-          backgroundColor={COLOR_THEME.subtle}
-          _text={{color: COLOR_THEME.subtleItem}}
           variant="subtle">
           Supprimer budget
         </Button>

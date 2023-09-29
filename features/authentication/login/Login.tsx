@@ -3,9 +3,9 @@ import {AuthenticationService} from '../../../database/services/authentication/a
 import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
-import {Box, Button, FormControl, Image} from 'native-base';
-import {APP_LOGO, COLOR_THEME} from '../../../constants';
-import {Input, Heading} from '../../../components';
+import {Box, FormControl, Image} from 'native-base';
+import {APP_LOGO} from '../../../constants';
+import {Input, Heading, Button} from '../../../components';
 
 export const Login = () => {
   const {dispatch} = useContext(AppContext);
@@ -28,11 +28,7 @@ export const Login = () => {
       <FormControl maxW="280px">
         <FormControl.Label>Email :</FormControl.Label>
         <Input onChangeText={setEmail} autoComplete="email" />
-        <Button
-          backgroundColor={COLOR_THEME.primary}
-          onPress={handleSubmit}
-          isLoading={isLoading}
-          disabled={isLoading}>
+        <Button onPress={handleSubmit} disabled={isLoading}>
           Connexion
         </Button>
       </FormControl>

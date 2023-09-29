@@ -5,15 +5,8 @@ import {changeView} from '../../store/views/actions';
 import {AccountService} from '../../database/services/account/account';
 import {removeAccount} from '../../store/account/actions';
 import {AddBudgetModal} from '../budgets/AddBudgetModal';
-import {
-  AddIcon,
-  ArrowBackIcon,
-  Box,
-  Button,
-  Divider,
-  IconButton,
-} from 'native-base';
-import {Text, Subheading} from '../../components';
+import {AddIcon, ArrowBackIcon, Box, Divider, IconButton} from 'native-base';
+import {Text, Subheading, Button} from '../../components';
 import {COLOR_THEME} from '../../constants';
 
 export const AccountView = () => {
@@ -61,12 +54,9 @@ export const AccountView = () => {
         />
         <Button
           size="sm"
-          onPress={handleClickRemove}
-          backgroundColor={COLOR_THEME.subtle}
-          _text={{color: COLOR_THEME.subtleItem}}
           variant="subtle"
-          isLoading={isLoading}
-          isDisabled={isLoading}>
+          onPress={handleClickRemove}
+          disabled={isLoading}>
           Supprimer compte
         </Button>
       </Box>

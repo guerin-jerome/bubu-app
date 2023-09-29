@@ -2,11 +2,11 @@ import React, {useContext, useState} from 'react';
 import {AppContext} from '../../context/AppContext';
 import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
-import {Box, Button, Modal, Radio} from 'native-base';
+import {Box, Modal, Radio} from 'native-base';
 import {COLOR_THEME} from '../../constants';
 import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
-import {Input, Text, Heading} from '../../components';
+import {Input, Text, Heading, Button} from '../../components';
 
 type TAddAccountModalProps = {
   isVisible: boolean;
@@ -75,21 +75,14 @@ export const AddBudgetModal = ({
             </Radio>
           </Radio.Group>
           <Box flexDirection="row" justifyContent="space-between" marginTop={6}>
-            <Button
-              width="47%"
-              isLoading={isLoading}
-              isDisabled={isLoading}
-              onPress={handleAddBudget}
-              backgroundColor={COLOR_THEME.primary}>
+            <Button width="47%" disabled={isLoading} onPress={handleAddBudget}>
               Ajouter
             </Button>
             <Button
               width="47%"
-              isLoading={isLoading}
-              isDisabled={isLoading}
+              disabled={isLoading}
               onPress={handleClose}
-              backgroundColor={COLOR_THEME.subtle}
-              _text={{color: COLOR_THEME.subtleItem}}>
+              variant="subtle">
               Fermer
             </Button>
           </Box>
