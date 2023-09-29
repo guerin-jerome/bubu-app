@@ -2,12 +2,12 @@ import React, {useContext} from 'react';
 import {TBudget} from '../../../types/TBudget';
 import {Pressable, StyleSheet} from 'react-native';
 import {Box, Progress} from 'native-base';
-import {PRIMARY_COLOR} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {changeView} from '../../../store/views/actions';
 import {formatType} from '../../../utils/budget';
 import {STYLE_CARDS} from '../../../styles';
 import {Text} from '../../../components/Text';
+import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({
   budgetHeader: {
@@ -28,7 +28,7 @@ const BudgetBody = ({base, current}: TBudgetBody) => (
       {current} € / {base} €
     </Text>
     <Progress
-      _filledTrack={{backgroundColor: PRIMARY_COLOR}}
+      _filledTrack={{backgroundColor: COLOR_THEME.primary}}
       value={(100 * current) / (base ?? 0)}
     />
   </>
@@ -39,7 +39,10 @@ const SavedBudgetBody = ({current}: TBudgetBody) => (
     <Text bold fontSize="sm">
       {current} €
     </Text>
-    <Progress _filledTrack={{backgroundColor: PRIMARY_COLOR}} value={100} />
+    <Progress
+      _filledTrack={{backgroundColor: COLOR_THEME.primary}}
+      value={100}
+    />
   </>
 );
 

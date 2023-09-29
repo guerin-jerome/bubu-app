@@ -13,9 +13,9 @@ import {
   Divider,
   IconButton,
 } from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import {Text} from '../../components/Text';
 import {Subheading} from '../../components/Subheading';
+import {COLOR_THEME} from '../../constants';
 
 export const AccountView = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -57,14 +57,14 @@ export const AccountView = () => {
         <IconButton
           onPress={handleClickRetour}
           size="sm"
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           icon={<ArrowBackIcon color="white" />}
         />
         <Button
           size="sm"
           onPress={handleClickRemove}
-          backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_ITEM_COLOR}}
+          backgroundColor={COLOR_THEME.subtle}
+          _text={{color: COLOR_THEME.subtleItem}}
           variant="subtle"
           isLoading={isLoading}
           isDisabled={isLoading}>
@@ -84,7 +84,7 @@ export const AccountView = () => {
         <IconButton
           onPress={handleOpenModal}
           size="sm"
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           icon={<AddIcon color="white" />}
         />
       </Box>

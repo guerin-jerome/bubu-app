@@ -3,10 +3,10 @@ import {TExpense} from '../../../types/TExpense';
 import {StyleSheet} from 'react-native';
 import {formatDate} from '../../../utils/date';
 import {Box} from 'native-base';
-import {PRIMARY_COLOR} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {Placeholder} from '../../../components/Placeholder';
 import {Text} from '../../../components/Text';
+import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({
   card: {
@@ -20,7 +20,7 @@ const style = StyleSheet.create({
     height: 6,
     width: 6,
     borderRadius: 3,
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: COLOR_THEME.primary,
     marginRight: 8,
     marginTop: 7,
   },

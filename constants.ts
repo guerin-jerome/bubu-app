@@ -3,9 +3,9 @@ import {Appearance, Dimensions} from 'react-native';
 export const {height: screenHeight, width: screenWidth} =
   Dimensions.get('window');
 
-export const PRIMARY_COLOR = '#a34a78';
-export const SUBTLE_COLOR = '#fce7f3';
-export const SUBTLE_ITEM_COLOR = '#831943';
+const PRIMARY_COLOR = '#a34a78';
+const SUBTLE_COLOR = '#fce7f3';
+const SUBTLE_ITEM_COLOR = '#831943';
 const BLACK_COLOR = '#02130b';
 const WHITE_COLOR = '#fafefc';
 const GRAY_COLOR = '#718096';

@@ -3,12 +3,7 @@ import {AppContext} from '../../context/AppContext';
 import {BudgetService} from '../../database/services/budget/budget';
 import {addBudget} from '../../store/budget/actions';
 import {Box, Button, Modal, Radio} from 'native-base';
-import {
-  COLOR_THEME,
-  PRIMARY_COLOR,
-  SUBTLE_COLOR,
-  SUBTLE_ITEM_COLOR,
-} from '../../constants';
+import {COLOR_THEME} from '../../constants';
 import uuid from 'react-native-uuid';
 import {TBudget} from '../../types/TBudget';
 import {Input} from '../../components/Input';
@@ -87,7 +82,7 @@ export const AddBudgetModal = ({
               isLoading={isLoading}
               isDisabled={isLoading}
               onPress={handleAddBudget}
-              backgroundColor={PRIMARY_COLOR}>
+              backgroundColor={COLOR_THEME.primary}>
               Ajouter
             </Button>
             <Button
@@ -95,8 +90,8 @@ export const AddBudgetModal = ({
               isLoading={isLoading}
               isDisabled={isLoading}
               onPress={handleClose}
-              backgroundColor={SUBTLE_COLOR}
-              _text={{color: SUBTLE_ITEM_COLOR}}>
+              backgroundColor={COLOR_THEME.subtle}
+              _text={{color: COLOR_THEME.subtleItem}}>
               Fermer
             </Button>
           </Box>

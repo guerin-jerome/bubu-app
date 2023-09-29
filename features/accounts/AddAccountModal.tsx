@@ -3,12 +3,7 @@ import {AccountService} from '../../database/services/account/account';
 import {AppContext} from '../../context/AppContext';
 import {addAccount} from '../../store/account/actions';
 import {Box, Button, Modal, Text} from 'native-base';
-import {
-  COLOR_THEME,
-  PRIMARY_COLOR,
-  SUBTLE_COLOR,
-  SUBTLE_ITEM_COLOR,
-} from '../../constants';
+import {COLOR_THEME} from '../../constants';
 import {TAccount} from '../../types/TAccount';
 import uuid from 'react-native-uuid';
 import {Input} from '../../components/Input';
@@ -61,7 +56,7 @@ export const AddAccountModal = ({
               isLoading={isLoading}
               isDisabled={isLoading}
               onPress={handleAddAccount}
-              backgroundColor={PRIMARY_COLOR}>
+              backgroundColor={COLOR_THEME.primary}>
               Ajouter
             </Button>
             <Button
@@ -69,8 +64,8 @@ export const AddAccountModal = ({
               isLoading={isLoading}
               isDisabled={isLoading}
               onPress={handleClose}
-              backgroundColor={SUBTLE_COLOR}
-              _text={{color: SUBTLE_ITEM_COLOR}}>
+              backgroundColor={COLOR_THEME.subtle}
+              _text={{color: COLOR_THEME.subtleItem}}>
               Fermer
             </Button>
           </Box>

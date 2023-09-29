@@ -1,11 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {AddIcon, Box, Button, MinusIcon} from 'native-base';
-import {
-  PRIMARY_COLOR,
-  SUBTLE_COLOR,
-  SUBTLE_ITEM_COLOR,
-} from '../../../constants';
 import {AppContext} from '../../../context/AppContext';
 import {TBudget} from '../../../types/TBudget';
 import {createTodayDate} from '../../../utils/date';
@@ -16,6 +11,7 @@ import uuid from 'react-native-uuid';
 import {STYLE_CARDS} from '../../../styles';
 import {Input} from '../../../components/Input';
 import {Text} from '../../../components/Text';
+import {COLOR_THEME} from '../../../constants';
 
 const style = StyleSheet.create({
   actions: {
@@ -73,7 +69,7 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
           leftIcon={<AddIcon color="white" />}
           onPress={() => handleSubmitForm('+')}
           width="47%"
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           isLoading={isLoading}
           isDisabled={isLoading}>
           Ajouter
@@ -81,9 +77,9 @@ export const BudgetForm = ({budget}: TBudgetFormProps) => {
         <Button
           onPress={() => handleSubmitForm('-')}
           width="47%"
-          leftIcon={<MinusIcon color={SUBTLE_ITEM_COLOR} />}
-          backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_ITEM_COLOR}}
+          leftIcon={<MinusIcon color={COLOR_THEME.subtleItem} />}
+          backgroundColor={COLOR_THEME.subtle}
+          _text={{color: COLOR_THEME.subtleItem}}
           isLoading={isLoading}
           isDisabled={isLoading}>
           Retirer

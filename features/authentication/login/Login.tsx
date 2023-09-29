@@ -4,7 +4,7 @@ import {AppContext} from '../../../context/AppContext';
 import {authenticationSucceed} from '../../../store/authentication/actions';
 import {TAuthenticationSucceedPayload} from '../../../types/store/authentication/actions';
 import {Box, Button, FormControl, Image} from 'native-base';
-import {APP_LOGO, PRIMARY_COLOR} from '../../../constants';
+import {APP_LOGO, COLOR_THEME} from '../../../constants';
 import {Input} from '../../../components/Input';
 import {Heading} from '../../../components/Heading';
 
@@ -30,7 +30,7 @@ export const Login = () => {
         <FormControl.Label>Email :</FormControl.Label>
         <Input onChangeText={setEmail} autoComplete="email" />
         <Button
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           onPress={handleSubmit}
           isLoading={isLoading}
           disabled={isLoading}>

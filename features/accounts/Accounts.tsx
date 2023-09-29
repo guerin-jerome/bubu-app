@@ -4,9 +4,9 @@ import {AppContext} from '../../context/AppContext';
 import {Account} from './account/Account';
 import {AddAccountModal} from './AddAccountModal';
 import {AddIcon, Box, IconButton} from 'native-base';
-import {PRIMARY_COLOR} from '../../constants';
 import {Text} from '../../components/Text';
 import {Placeholder} from '../../components/Placeholder';
+import {COLOR_THEME} from '../../constants';
 
 const style = StyleSheet.create({
   scrollingList: {
@@ -42,7 +42,7 @@ export const Accounts = () => {
         <IconButton
           onPress={handleOpenModal}
           size="sm"
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           icon={<AddIcon color="white" />}
         />
       </Box>

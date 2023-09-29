@@ -9,13 +9,13 @@ import {
   IconButton,
   Progress,
 } from 'native-base';
-import {PRIMARY_COLOR, SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import {formatType} from '../../utils/budget';
 import {BudgetService} from '../../database/services/budget/budget';
 import {removeBudget} from '../../store/budget/actions';
 import {BudgetForm} from './budgetForm/BudgetForm';
 import {Text} from '../../components/Text';
 import {Subheading} from '../../components/Subheading';
+import {COLOR_THEME} from '../../constants';
 
 export const BudgetView = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -51,7 +51,7 @@ export const BudgetView = () => {
         <IconButton
           onPress={handleClickRetour}
           size="sm"
-          backgroundColor={PRIMARY_COLOR}
+          backgroundColor={COLOR_THEME.primary}
           icon={<ArrowBackIcon color="white" />}
         />
         <Button
@@ -59,8 +59,8 @@ export const BudgetView = () => {
           isDisabled={isLoading}
           size="sm"
           onPress={handleClickRemove}
-          backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_ITEM_COLOR}}
+          backgroundColor={COLOR_THEME.subtle}
+          _text={{color: COLOR_THEME.subtleItem}}
           variant="subtle">
           Supprimer budget
         </Button>
@@ -75,14 +75,14 @@ export const BudgetView = () => {
         {budgetIndicator}
       </Text>
       <Progress
-        _filledTrack={{backgroundColor: PRIMARY_COLOR}}
+        _filledTrack={{backgroundColor: COLOR_THEME.primary}}
         value={percentConsumned}
         size="md"
         marginBottom={6}
       />
       <BudgetForm budget={budgetFinded!!} />
       {/**
-       * <Button marginTop={4} backgroundColor={PRIMARY_COLOR}>
+       * <Button marginTop={4} backgroundColor={COLOR_THEME.primary}>
         Réinitialiser
       </Button>
        */}

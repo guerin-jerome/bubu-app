@@ -1,15 +1,15 @@
 import React from 'react';
 import {Input as NativeBaseInput} from 'native-base';
-import {ColorThemeStyle, PRIMARY_COLOR, SUBTLE_COLOR} from '../constants';
+import {COLOR_THEME, ColorThemeStyle} from '../constants';
 import {IInputProps} from 'native-base/lib/typescript/components/primitives/Input/types';
 
 export const Input = (props: IInputProps) => (
   <NativeBaseInput
     {...props}
     marginBottom={3}
-    focusOutlineColor={PRIMARY_COLOR}
+    focusOutlineColor={COLOR_THEME.primary}
     _focus={{
-      backgroundColor: SUBTLE_COLOR,
+      backgroundColor: COLOR_THEME.subtle,
       color: ColorThemeStyle.focus,
     }}
     color={ColorThemeStyle.text}

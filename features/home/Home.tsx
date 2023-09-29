@@ -4,8 +4,8 @@ import {logout} from '../../store/authentication/actions';
 import {Accounts} from '../accounts/Accounts';
 import {HistoryOfExpense} from '../expense/HistoryOfExpense';
 import {Box, Button} from 'native-base';
-import {SUBTLE_COLOR, SUBTLE_ITEM_COLOR} from '../../constants';
 import {Heading} from '../../components/Heading';
+import {COLOR_THEME} from '../../constants';
 
 export const Home = () => {
   const {appState, dispatch} = useContext(AppContext);
@@ -27,8 +27,8 @@ export const Home = () => {
         <Button
           size="sm"
           onPress={handleClickDeconnexion}
-          backgroundColor={SUBTLE_COLOR}
-          _text={{color: SUBTLE_ITEM_COLOR}}
+          backgroundColor={COLOR_THEME.subtle}
+          _text={{color: COLOR_THEME.subtleItem}}
           variant="subtle">
           Déconnexion
         </Button>
